@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Stack & Brand Agency</title>
+    <style>
+        :root {
+            --bg-dark: #0f172a;
+            --card-bg: #1e293b;
+            --accent: #38bdf8;
+            --text-light: #f8fafc;
+            --text-muted: #94a3b8;
+            --border: #334155;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            margin: 0;
+            padding: 40px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .container {
+            max-width: 1100px;
+            width: 100%;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        h1 { font-size: 2.5rem; margin-bottom: 10px; color: var(--text-light); }
+        p { color: var(--text-muted); font-size: 1.1rem; }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 20px;
+            margin-bottom: 50px;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 25px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: transform 0.2s, border-color 0.2s;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            border-color: var(--accent);
+        }
+
+        .card h3 { margin-top: 0; font-size: 1.3rem; color: var(--text-light); }
+        .price { font-size: 1.8rem; font-weight: bold; color: var(--accent); margin: 15px 0; }
+        .features { list-style: none; padding: 0; margin: 0 0 20px 0; color: var(--text-muted); }
+        .features li { margin-bottom: 8px; font-size: 0.9rem; }
+
+        .addon-ui {
+            border-top: 1px solid var(--border);
+            padding-top: 15px;
+            margin-top: 15px;
+        }
+
+        .addon-label {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            color: var(--text-light);
+        }
+
+        form {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            padding: 40px;
+            border-radius: 12px;
+            margin-top: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label { display: block; margin-bottom: 8px; font-weight: 500; }
+        input[type="text"], input[type="email"], select {
+            width: 100%;
+            padding: 12px;
+            background: var(--bg-dark);
+            border: 1px solid var(--border);
+            color: white;
+            border-radius: 6px;
+            box-sizing: border-box;
+        }
+
+        button {
+            width: 100%;
+            padding: 15px;
+            background: var(--accent);
+            color: var(--bg-dark);
+            font-weight: bold;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background 0.2s;
+        }
+
+        button:hover { background: #7dd3fc; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <h1>Brand Launch Core</h1>
+        <p>Pick a dedicated digital platform, automate your physical merch fulfillment, or bundle both seamlessly.</p>
+    </header>
+
+    <div class="grid">
+        <!-- Tier 1: Office Starter Pack -->
+        <div class="card">
+            <div>
+                <h3>Office Starter Pack</h3>
+                <p style="font-size:0.8rem; color:var(--text-muted); margin-top:4px;">Core Printify Assets</p>
+                <div class="price">$150</div>
+                <ul class="features">
+                    <li>✓ 1 Premium Custom T-Shirt</li>
+                    <li>✓ 1 Stainless Steel Mug</li>
+                    <li>✓ 1 Non-Slip Mouse Pad</li>
+                    <li>✓ 1 Sheet Custom Stickers</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Tier 2: BYO Brand Suite -->
+        <div class="card">
+            <div>
+                <h3>BYO Brand Suite</h3>
+                <p style="font-size:0.8rem; color:var(--text-muted); margin-top:4px;">Complete Identity Kit</p>
+                <div class="price">$300</div>
+                <ul class="features">
+                    <li>✓ 2 Premium Custom T-Shirts</li>
+                    <li>✓ 1 Stainless Steel Mug</li>
+                    <li>✓ 1 Non-Slip Mouse Pad</li>
+                    <li>✓ 1 Hardcover Journal</li>
+                    <li>✓ 1 Sheet Custom Stickers</li>
+                    <li>✓ 1 Pack Business Cards</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Tier 3: Basic Build -->
+        <div class="card">
+            <div>
+                <h3>Basic 3-Page Website</h3>
+                <p style="font-size:0.8rem; color:var(--text-muted); margin-top:4px;">Async Digital Build</p>
+                <div class="price" id="basic-price">$890</div>
+                <ul class="features">
+                    <li>✓ Home, Services, Contact</li>
+                    <li>✓ Fully Responsive Design</li>
+                    <li>✓ Secure Code via GitHub</li>
+                </ul>
+            </div>
+            <div class="addon-ui">
+                <label class="addon-label">
+                    <input type="checkbox" id="addon-basic" onchange="toggleAddon('basic', 120)"> 
+                    Add Starter Pack (+$120 Bundle Price)
+                </label>
+            </div>
+        </div>
+
+        <!-- Tier 4: Growth Partner -->
+        <div class="card">
+            <div>
+                <h3>Growth Partner Tier</h3>
+                <p style="font-size:0.8rem; color:var(--text-muted); margin-top:4px;">Continuous Scale Plan</p>
+                <div class="price" id="partner-price">$1,500</div>
+                <ul class="features">
+                    <li>✓ Basic 3-Page Website</li>
+                    <li>✓ Leads-to-Text CRM System</li>
+                    <li>✓ Ongoing Code Maintenance</li>
+                    <li>* Requires $99/mo Retainer</li>
+                </ul>
+            </div>
+            <div class="addon-ui">
+                <label class="addon-label">
+                    <input type="checkbox" id="addon-partner" onchange="toggleAddon('partner', 220)"> 
+                    Add Full Brand Suite (+$220 Partner Price)
+                </label>
+            </div>
+        </div>
+    </div>
+
+    <!-- Booking Intake Form targeting Basin Endpoints -->
+    <form action="https://usebasin.com/f/YOUR_BASIN_ENDPOINT_ID" method="POST">
+        <h2 style="margin-top:0; margin-bottom:25px;">Launch Your Pipeline</h2>
+        
+        <div class="form-group">
+            <label for="name">Full Name or Business Name</label>
+            <input type="text" id="name" name="name" required placeholder="Acme Logistics Co.">
+        </div>
+
+        <div class="form-group">
+            <label for="email">Work Email Address</label>
+            <input type="email" id="email" name="email" required placeholder="contact@acme.com">
+        </div>
+
+        <div class="form-group">
+            <label for="package">Select Target Configuration</label>
+            <select id="package" name="package" required>
+                <option value="starter-merch">Office Starter Pack Only ($150)</option>
+                <option value="suite-merch">BYO Brand Suite Only ($300)</option>
+                <option value="basic-3page">Basic 3-Page Website ($890)</option>
+                <option value="basic-3page-merch">Basic 3-Page Website + Starter Pack ($1,010)</option>
+                <option value="growth-partner">Growth Partner Setup ($1,500)</option>
+                <option value="growth-partner-merch">Growth Partner Setup + Full Brand Suite ($1,720)</option>
+            </select>
+        </div>
+
+        <button type="submit">Initialize Automated Onboarding</button>
+    </form>
+</div>
+
+<script>
+    function toggleAddon(tier, addonCost) {
+        if(tier === 'basic') {
+            const basePrice = 890;
+            const isChecked = document.getElementById('addon-basic').checked;
+            document.getElementById('basic-price').innerText = "$" + (isChecked ? (basePrice + addonCost) : basePrice);
+        } else if(tier === 'partner') {
+            const basePrice = 1500;
+            const isChecked = document.getElementById('addon-partner').checked;
+            document.getElementById('partner-price').innerText = "$" + (isChecked ? (basePrice + addonCost) : basePrice);
+        }
+    }
+</script>
+</body>
+</html>
