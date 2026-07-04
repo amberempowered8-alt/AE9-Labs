@@ -30,7 +30,6 @@
             overflow-x: hidden;
         }
 
-        /* Twinkling Starfield Layer */
         .starfield {
             position: absolute;
             top: 0; left: 0; width: 100%; height: 100%;
@@ -51,7 +50,6 @@
             100% { opacity: 0.6; }
         }
 
-        /* Shooting Star System */
         .shooting-star {
             position: absolute;
             left: 100%;
@@ -238,18 +236,18 @@
             </div>
         </div>
 
-        <!-- Tier 3: Growth Partner 6-Month Contract -->
+        <!-- Tier 3: Growth Partner Flat Rate -->
         <div class="card">
             <div>
                 <h3>Growth Partner Tier</h3>
                 <p style="font-size:0.85rem; color:var(--text-muted); margin-top:4px;">Complete Operations Scaler</p>
-                <div class="price">$1,500</div>
+                <div class="price">$1,850</div>
                 <ul class="features">
                     <li>✓ Basic 3-Page Web Platform Build</li>
                     <li>✓ Leads-to-Text CRM System Backend</li>
-                    <li>✓ Continuous Maintenance & Updates</li>
+                    <li>✓ 6 Months Core Architecture Support</li>
                     <li>🎁 Includes FULL Brand Asset Suite</li>
-                    <li>* Requires 6-Month Contract Plan ($99/mo)</li>
+                    <li>* Flat Rate Unified Agreement</li>
                 </ul>
             </div>
         </div>
@@ -275,7 +273,7 @@
                 <option value="suite-merch">Brand Asset Suite Only ($300)</option>
                 <option value="basic-3page">Basic 3-Page Website ($900)</option>
                 <option value="basic-3page-merch">Basic 3-Page Website + Brand Suite ($1,050)</option>
-                <option value="growth-partner-allin">Growth Partner Tier [6-Mo Agreement] ($1,500)</option>
+                <option value="growth-partner-flat">Growth Partner Tier [All-In Flat Agreement] ($1,850)</option>
             </select>
         </div>
 
@@ -284,37 +282,24 @@
 </div>
 
 <script>
-    // Handles Tier 2 dynamic price updating
     function toggleAddon(addonCost) {
         const basePrice = 900;
         const isChecked = document.getElementById('addon-basic').checked;
         document.getElementById('basic-price').innerText = "$" + (isChecked ? (basePrice + addonCost) : basePrice);
     }
 
-    // Handles random shooting star timing and entry heights
     function triggerShootingStar() {
         const star = document.getElementById('meteor');
-        const randomTop = Math.floor(Math.random() * 40); // restricts to top 40% of page
-        
+        const randomTop = Math.floor(Math.random() * 40);
         star.style.top = randomTop + "vh";
         star.style.animation = "shoot 1.5s cubic-bezier(0.25, 1, 0.5, 1) forwards";
-        
-        // Clear animation property so it can re-trigger later
-        setTimeout(() => {
-            star.style.animation = "none";
-        }, 1500);
+        setTimeout(() => { star.style.animation = "none"; }, 1500);
     }
 
-    // Runs a random shooting star check loop every 8-15 seconds
     function loopStars() {
         const randomDelay = Math.floor(Math.random() * (15000 - 8000)) + 8000;
-        setTimeout(() => {
-            triggerShootingStar();
-            loopStars();
-        }, randomDelay);
+        setTimeout(() => { triggerShootingStar(); loopStars(); }, randomDelay);
     }
-    
-    // Start loop on page load
     window.onload = loopStars;
 </script>
 </body>
