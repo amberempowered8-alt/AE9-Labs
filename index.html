@@ -6,11 +6,16 @@
     <title>AE9-Labs | Brand & Digital Systems</title>
     <style>
         :root {
+            /* Deep, dark cosmic palette */
             --bg-space: #050212;
             --card-bg: rgba(13, 8, 38, 0.4);
+            
+            /* High-tech accent colors */
             --accent-green: #10b981;
             --accent-purple: #a855f7;
             --accent-cyan: #06b6d4;
+            
+            /* Clean data text colors */
             --text-light: #f8fafc;
             --text-muted: #cbd5e1;
             --border: rgba(168, 85, 247, 0.2);
@@ -30,7 +35,7 @@
             overflow-x: hidden;
         }
 
-        /* Ambient Dynamic Nebula Clouds & Swirls Layer */
+        /* Animated Dynamic Cosmic Swirls (Canvas) */
         .galaxy-canvas {
             position: fixed;
             top: 0; left: 0; width: 100vw; height: 100vh;
@@ -38,6 +43,7 @@
             pointer-events: none;
         }
 
+        /* Interactive Nebula Blend Overlay (CSS) */
         .nebula-overlay {
             position: fixed;
             top: 0; left: 0; width: 100vw; height: 100vh;
@@ -56,7 +62,7 @@
             100% { transform: scale(1.2) rotate(15deg); filter: hue-rotate(30deg); }
         }
 
-        /* Shooting Star System */
+        /* Randomized Shooting Star System */
         .shooting-star {
             position: absolute;
             left: 100%;
@@ -85,6 +91,18 @@
         header {
             text-align: center;
             margin-bottom: 50px;
+        }
+
+        /* The Updated Logo Integration Section */
+        header img.brand-logo {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            border: 2px solid var(--accent-green);
+            box-shadow: 0 0 25px rgba(16, 185, 129, 0.4);
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 10;
         }
 
         header h1 { 
@@ -168,232 +186,4 @@
             padding: 40px;
             border-radius: 16px;
             margin-top: 20px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-        }
-
-        .form-group { margin-bottom: 25px; }
-        label { display: block; margin-bottom: 8px; font-weight: 500; font-size: 0.95rem; color: var(--text-muted); }
-        
-        input[type="text"], input[type="email"], select {
-            width: 100%;
-            padding: 14px;
-            background: rgba(5, 2, 18, 0.7);
-            border: 1px solid var(--border);
-            color: white;
-            border-radius: 8px;
-            box-sizing: border-box;
-            font-size: 1rem;
-            transition: border-color 0.2s;
-        }
-
-        input:focus, select:focus {
-            outline: none;
-            border-color: var(--accent-green);
-            box-shadow: 0 0 15px rgba(16, 185, 129, 0.2);
-        }
-
-        button {
-            width: 100%;
-            padding: 16px;
-            background: linear-gradient(90deg, var(--accent-purple), var(--accent-cyan), var(--accent-green));
-            color: #050212;
-            font-weight: 800;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 1.1rem;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            transition: filter 0.2s, transform 0.1s;
-            box-shadow: 0 4px 15px rgba(168, 85, 247, 0.3);
-        }
-
-        button:hover { filter: brightness(1.2); }
-        button:active { transform: scale(0.99); }
-    </style>
-</head>
-<body>
-
-<!-- Cosmic Canvas System -->
-<canvas class="galaxy-canvas" id="spaceCanvas"></canvas>
-<div class="nebula-overlay"></div>
-<div class="shooting-star" id="meteor"></div>
-
-<div class="container">
-    <header>
-        <h1>AE9-<span>Labs</span></h1>
-        <p>Asynchronous Digital Architecture & Automated Physical Identity Systems</p>
-    </header>
-
-    <div class="grid">
-        <!-- Tier 1: Merch Only Suite -->
-        <div class="card">
-            <div>
-                <h3>Brand Asset Suite</h3>
-                <p style="font-size:0.85rem; color:var(--text-muted); margin-top:4px;">Physical Identity Kit</p>
-                <div class="price">$300</div>
-                <ul class="features">
-                    <li>✓ 1 Custom Premium Laptop Backpack</li>
-                    <li>✓ 2 Premium Custom T-Shirts</li>
-                    <li>✓ 1 Premium Desktop Desk Pad</li>
-                    <li>✓ 1 Custom Spiral Journal</li>
-                    <li>✓ 1 Insulated Brand Tumbler</li>
-                    <li>✓ 1 Branded 12-Month Wall Calendar</li>
-                    <li>✓ 50 Custom Cut Vinyl Stickers</li>
-                </ul>
-            </div>
-        </div>
-
-        <!-- Tier 2: Basic Build -->
-        <div class="card">
-            <div>
-                <h3>Basic 3-Page Website</h3>
-                <p style="font-size:0.85rem; color:var(--text-muted); margin-top:4px;">Async Digital Core</p>
-                <div class="price" id="basic-price">$900</div>
-                <ul class="features">
-                    <li>✓ Home, Services, Contact Layouts</li>
-                    <li>✓ Fully Responsive UI Architecture</li>
-                    <li>✓ Clean Code delivered via GitHub</li>
-                </ul>
-            </div>
-            <div class="addon-ui">
-                <label class="addon-label">
-                    <input type="checkbox" id="addon-basic" onchange="toggleAddon(150)"> 
-                    Add Brand Suite (+$150 Bundle Price)
-                </label>
-            </div>
-        </div>
-
-        <!-- Tier 3: Growth Partner Flat Rate -->
-        <div class="card">
-            <div>
-                <h3>Growth Partner Tier</h3>
-                <p style="font-size:0.85rem; color:var(--text-muted); margin-top:4px;">Complete Operations Scaler</p>
-                <div class="price">$1,850</div>
-                <ul class="features">
-                    <li>✓ Basic 3-Page Web Platform Build</li>
-                    <li>✓ Leads-to-Text CRM System Backend</li>
-                    <li>✓ 6 Months Core Architecture Support</li>
-                    <li>🎁 Includes FULL Brand Asset Suite</li>
-                    <li>* Flat Rate Unified Agreement</li>
-                </ul>
-            </div>
-        </div>
-    </div>
-
-    <!-- Booking Intake Form targeting Basin Endpoints -->
-    <form action="https://usebasin.com/f/YOUR_BASIN_ENDPOINT_ID" method="POST">
-        <h2 style="margin-top:0; margin-bottom:25px; text-shadow: 0 0 15px rgba(168, 85, 247, 0.3);">Initialize Your Pipeline</h2>
-        
-        <div class="form-group">
-            <label for="name">Full Name or Business Name</label>
-            <input type="text" id="name" name="name" required placeholder="Acme Logistics Co.">
-        </div>
-
-        <div class="form-group">
-            <label for="email">Work Email Address</label>
-            <input type="email" id="email" name="email" required placeholder="contact@acme.com">
-        </div>
-
-        <div class="form-group">
-            <label for="package">Select Target Configuration</label>
-            <select id="package" name="package" required>
-                <option value="suite-merch">Brand Asset Suite Only ($300)</option>
-                <option value="basic-3page">Basic 3-Page Website ($900)</option>
-                <option value="basic-3page-merch">Basic 3-Page Website + Brand Suite ($1,050)</option>
-                <option value="growth-partner-flat">Growth Partner Tier [All-In Flat Agreement] ($1,850)</option>
-            </select>
-        </div>
-
-        <div style="position: relative; z-index: 20;">
-            <button type="submit">Initialize Automated Onboarding</button>
-        </div>
-    </form>
-</div>
-
-<script>
-    // Price Toggle Logic
-    function toggleAddon(addonCost) {
-        const basePrice = 900;
-        const isChecked = document.getElementById('addon-basic').checked;
-        document.getElementById('basic-price').innerText = "$" + (isChecked ? (basePrice + addonCost) : basePrice);
-    }
-
-    // Shooting Star Generation
-    function triggerShootingStar() {
-        const star = document.getElementById('meteor');
-        const randomTop = Math.floor(Math.random() * 40);
-        star.style.top = randomTop + "vh";
-        star.style.animation = "shoot 1.3s cubic-bezier(0.25, 1, 0.5, 1) forwards";
-        setTimeout(() => { star.style.animation = "none"; }, 1300);
-    }
-
-    function loopStars() {
-        const randomDelay = Math.floor(Math.random() * (14000 - 7000)) + 7000;
-        setTimeout(() => { triggerShootingStar(); loopStars(); }, randomDelay);
-    }
-
-    // Interactive Starfield & Celestial Swirl Particles
-    const canvas = document.getElementById('spaceCanvas');
-    const ctx = canvas.getContext('2d');
-    let particles = [];
-
-    function resizeCanvas() {
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-    }
-    window.addEventListener('resize', resizeCanvas);
-    resizeCanvas();
-
-    class CosmicParticle {
-        constructor() {
-            this.x = Math.random() * canvas.width;
-            this.y = Math.random() * canvas.height;
-            this.size = Math.random() * 2;
-            this.baseOpacity = Math.random() * 0.6 + 0.2;
-            this.opacity = this.baseOpacity;
-            this.speed = Math.random() * 0.05 + 0.02;
-            this.angle = Math.random() * Math.PI * 2;
-        }
-        update() {
-            this.angle += 0.001;
-            this.x += Math.cos(this.angle) * this.speed;
-            this.y += Math.sin(this.angle) * this.speed;
-            this.opacity = this.baseOpacity + Math.sin(Date.now() * 0.002 + this.x) * 0.15;
-            
-            if (this.x < 0 || this.x > canvas.width) this.x = Math.random() * canvas.width;
-            if (this.y < 0 || this.y > canvas.height) this.y = Math.random() * canvas.height;
-        }
-        draw() {
-            ctx.fillStyle = `rgba(255, 255, 255, ${this.opacity})`;
-            ctx.beginPath();
-            ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-            ctx.fill();
-        }
-    }
-
-    function initParticles() {
-        particles = [];
-        for (let i = 0; i < 120; i++) {
-            particles.push(new CosmicParticle());
-        }
-    }
-
-    function animateSpace() {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        particles.forEach(p => {
-            p.update();
-            p.draw();
-        });
-        requestAnimationFrame(animateSpace);
-    }
-
-    window.addEventListener('DOMContentLoaded', () => {
-        initParticles();
-        animateSpace();
-        loopStars();
-    });
-</script>
-</body>
-</html>
-
+            box-shadow: 0 10px 30px rgba(0, 0, 0,
