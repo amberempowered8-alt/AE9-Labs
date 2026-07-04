@@ -6,24 +6,19 @@
     <title>AE9-Labs | Brand & Digital Systems</title>
     <style>
         :root {
-            /* Deep violet-space base inspired by the reference image */
-            --bg-space: #0b071e;
-            --bg-space-light: #160e33;
-            --card-bg: rgba(26, 19, 54, 0.45);
-            
-            /* Tech meets Celestial Matrix Greens & Blues */
+            --bg-space: #050212;
+            --card-bg: rgba(13, 8, 38, 0.4);
             --accent-green: #10b981;
-            --accent-blue: #06b6d4;
-            --accent-glow: rgba(16, 185, 129, 0.25);
-            
+            --accent-purple: #a855f7;
+            --accent-cyan: #06b6d4;
             --text-light: #f8fafc;
-            --text-muted: #a5b4fc;
-            --border: rgba(165, 180, 252, 0.15);
+            --text-muted: #cbd5e1;
+            --border: rgba(168, 85, 247, 0.2);
         }
 
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-            background: linear-gradient(135deg, var(--bg-space), var(--bg-space-light));
+            background-color: var(--bg-space);
             color: var(--text-light);
             margin: 0;
             padding: 40px 20px;
@@ -35,67 +30,49 @@
             overflow-x: hidden;
         }
 
-        /* Abstract Vector Grid Wave Background simulating image_bc3572.png */
-        .wave-grid {
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            pointer-events: none;
-            z-index: 0;
-            opacity: 0.25;
-            background-image: 
-                radial-gradient(circle at 20% 30%, var(--accent-blue) 0%, transparent 40%),
-                radial-gradient(circle at 80% 70%, var(--accent-green) 0%, transparent 45%);
-            filter: blur(80px);
-        }
-
-        /* Animated grid overlay to give subtle movement */
-        body::before {
-            content: "";
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(rgba(16, 185, 129, 0.03) 1px, transparent 1px),
-                        linear-gradient(90deg, rgba(6, 182, 212, 0.03) 1px, transparent 1px);
-            background-size: 40px 40px;
+        /* Ambient Dynamic Nebula Clouds & Swirls Layer */
+        .galaxy-canvas {
+            position: fixed;
+            top: 0; left: 0; width: 100vw; height: 100vh;
             z-index: 0;
             pointer-events: none;
         }
 
-        /* Twinkling Starfield */
-        .starfield {
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
+        .nebula-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            z-index: 1;
             pointer-events: none;
-            z-index: 0;
-            background-image: 
-                radial-gradient(white, rgba(255,255,255,.2) 1.5px, transparent 30px),
-                radial-gradient(white, rgba(255,255,255,.1) 1px, transparent 20px);
-            background-size: 450px 450px, 300px 300px;
-            background-position: 0 0, 50px 80px;
-            animation: starTwinkle 6s ease-in-out infinite;
+            mix-blend-mode: screen;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(168, 85, 247, 0.25) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(16, 185, 129, 0.2) 0%, transparent 50%),
+                radial-gradient(circle at 50% 50%, rgba(6, 182, 212, 0.15) 0%, transparent 60%);
+            animation: nebulaSwirl 25s ease-in-out infinite alternate;
         }
 
-        @keyframes starTwinkle {
-            0%, 100% { opacity: 0.4; }
-            50% { opacity: 0.8; }
+        @keyframes nebulaSwirl {
+            0% { transform: scale(1) rotate(0deg); filter: hue-rotate(0deg); }
+            100% { transform: scale(1.2) rotate(15deg); filter: hue-rotate(30deg); }
         }
 
         /* Shooting Star System */
         .shooting-star {
             position: absolute;
             left: 100%;
-            width: 100px;
+            width: 120px;
             height: 2px;
             background: linear-gradient(-45deg, var(--accent-green), rgba(0,0,0,0));
-            filter: drop-shadow(0 0 6px var(--accent-green));
+            filter: drop-shadow(0 0 8px var(--accent-green));
             pointer-events: none;
-            z-index: 0;
+            z-index: 2;
             opacity: 0;
         }
 
         @keyframes shoot {
-            0% { transform: translateX(0) translateY(0) rotate(-20deg); opacity: 1; }
+            0% { transform: translateX(0) translateY(0) rotate(-22deg); opacity: 1; }
             10% { opacity: 1; }
-            100% { transform: translateX(-120vw) translateY(40vh) rotate(-20deg); opacity: 0; }
+            100% { transform: translateX(-120vw) translateY(45vh) rotate(-22deg); opacity: 0; }
         }
 
         .container {
@@ -111,16 +88,16 @@
         }
 
         header h1 { 
-            font-size: 3.2rem; 
+            font-size: 3.5rem; 
             font-weight: 900;
-            letter-spacing: 3px; 
+            letter-spacing: 4px; 
             margin-bottom: 10px; 
             color: var(--text-light); 
-            text-shadow: 0 0 30px rgba(16, 185, 129, 0.2);
+            text-shadow: 0 0 25px rgba(168, 85, 247, 0.4);
         }
         
         header h1 span { 
-            background: linear-gradient(90deg, var(--accent-green), var(--accent-blue));
+            background: linear-gradient(90deg, var(--accent-green), var(--accent-cyan), var(--accent-purple));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
@@ -135,8 +112,8 @@
 
         .card {
             background: var(--card-bg);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
             border: 1px solid var(--border);
             border-radius: 16px;
             padding: 30px;
@@ -144,16 +121,23 @@
             flex-direction: column;
             justify-content: space-between;
             transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
         }
 
         .card:hover {
             transform: translateY(-5px);
             border-color: var(--accent-green);
-            box-shadow: 0 0 30px rgba(16, 185, 129, 0.12);
+            box-shadow: 0 0 30px rgba(16, 185, 129, 0.2);
         }
 
         .card h3 { margin-top: 0; font-size: 1.4rem; color: var(--text-light); letter-spacing: 0.5px; }
-        .price { font-size: 2.2rem; font-weight: bold; color: var(--accent-green); margin: 15px 0; }
+        
+        /* Vibrant custom package pricing styles */
+        .card:nth-child(1) .price { color: var(--accent-purple); text-shadow: 0 0 10px rgba(168, 85, 247, 0.3); }
+        .card:nth-child(2) .price { color: var(--accent-cyan); text-shadow: 0 0 10px rgba(6, 182, 212, 0.3); }
+        .card:nth-child(3) .price { color: var(--accent-green); text-shadow: 0 0 10px rgba(16, 185, 129, 0.3); }
+
+        .price { font-size: 2.4rem; font-weight: bold; margin: 15px 0; }
         .features { list-style: none; padding: 0; margin: 0 0 20px 0; color: var(--text-muted); }
         .features li { margin-bottom: 12px; font-size: 0.95rem; }
 
@@ -172,19 +156,19 @@
             color: var(--text-light);
         }
 
-        /* Checkbox styling */
         input[type="checkbox"] {
             accent-color: var(--accent-green);
         }
 
         form {
             background: var(--card-bg);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
             border: 1px solid var(--border);
             padding: 40px;
             border-radius: 16px;
             margin-top: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
         }
 
         .form-group { margin-bottom: 25px; }
@@ -193,7 +177,7 @@
         input[type="text"], input[type="email"], select {
             width: 100%;
             padding: 14px;
-            background: rgba(11, 7, 30, 0.6);
+            background: rgba(5, 2, 18, 0.7);
             border: 1px solid var(--border);
             color: white;
             border-radius: 8px;
@@ -205,32 +189,34 @@
         input:focus, select:focus {
             outline: none;
             border-color: var(--accent-green);
-            box-shadow: 0 0 10px rgba(16, 185, 129, 0.1);
+            box-shadow: 0 0 15px rgba(16, 185, 129, 0.2);
         }
 
         button {
             width: 100%;
             padding: 16px;
-            background: linear-gradient(90deg, var(--accent-green), var(--accent-blue));
-            color: #0b071e;
-            font-weight: 700;
+            background: linear-gradient(90deg, var(--accent-purple), var(--accent-cyan), var(--accent-green));
+            color: #050212;
+            font-weight: 800;
             border: none;
             border-radius: 8px;
             cursor: pointer;
-            font-size: 1.05rem;
+            font-size: 1.1rem;
             letter-spacing: 1px;
             text-transform: uppercase;
             transition: filter 0.2s, transform 0.1s;
+            box-shadow: 0 4px 15px rgba(168, 85, 247, 0.3);
         }
 
-        button:hover { filter: brightness(1.1); }
+        button:hover { filter: brightness(1.2); }
         button:active { transform: scale(0.99); }
     </style>
 </head>
 <body>
 
-<div class="wave-grid"></div>
-<div class="starfield"></div>
+<!-- Cosmic Canvas System -->
+<canvas class="galaxy-canvas" id="spaceCanvas"></canvas>
+<div class="nebula-overlay"></div>
 <div class="shooting-star" id="meteor"></div>
 
 <div class="container">
@@ -297,7 +283,7 @@
 
     <!-- Booking Intake Form targeting Basin Endpoints -->
     <form action="https://usebasin.com/f/YOUR_BASIN_ENDPOINT_ID" method="POST">
-        <h2 style="margin-top:0; margin-bottom:25px; text-shadow: 0 0 15px rgba(16, 185, 129, 0.15);">Initialize Your Pipeline</h2>
+        <h2 style="margin-top:0; margin-bottom:25px; text-shadow: 0 0 15px rgba(168, 85, 247, 0.3);">Initialize Your Pipeline</h2>
         
         <div class="form-group">
             <label for="name">Full Name or Business Name</label>
@@ -319,30 +305,95 @@
             </select>
         </div>
 
-        <button type="submit">Initialize Automated Onboarding</button>
+        <div style="position: relative; z-index: 20;">
+            <button type="submit">Initialize Automated Onboarding</button>
+        </div>
     </form>
 </div>
 
 <script>
+    // Price Toggle Logic
     function toggleAddon(addonCost) {
         const basePrice = 900;
         const isChecked = document.getElementById('addon-basic').checked;
         document.getElementById('basic-price').innerText = "$" + (isChecked ? (basePrice + addonCost) : basePrice);
     }
 
+    // Shooting Star Generation
     function triggerShootingStar() {
         const star = document.getElementById('meteor');
         const randomTop = Math.floor(Math.random() * 40);
         star.style.top = randomTop + "vh";
-        star.style.animation = "shoot 1.5s cubic-bezier(0.25, 1, 0.5, 1) forwards";
-        setTimeout(() => { star.style.animation = "none"; }, 1500);
+        star.style.animation = "shoot 1.3s cubic-bezier(0.25, 1, 0.5, 1) forwards";
+        setTimeout(() => { star.style.animation = "none"; }, 1300);
     }
 
     function loopStars() {
-        const randomDelay = Math.floor(Math.random() * (16000 - 9000)) + 9000;
+        const randomDelay = Math.floor(Math.random() * (14000 - 7000)) + 7000;
         setTimeout(() => { triggerShootingStar(); loopStars(); }, randomDelay);
     }
-    window.onload = loopStars;
+
+    // Interactive Starfield & Celestial Swirl Particles
+    const canvas = document.getElementById('spaceCanvas');
+    const ctx = canvas.getContext('2d');
+    let particles = [];
+
+    function resizeCanvas() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+
+    class CosmicParticle {
+        constructor() {
+            this.x = Math.random() * canvas.width;
+            this.y = Math.random() * canvas.height;
+            this.size = Math.random() * 2;
+            this.baseOpacity = Math.random() * 0.6 + 0.2;
+            this.opacity = this.baseOpacity;
+            this.speed = Math.random() * 0.05 + 0.02;
+            this.angle = Math.random() * Math.PI * 2;
+        }
+        update() {
+            this.angle += 0.001;
+            this.x += Math.cos(this.angle) * this.speed;
+            this.y += Math.sin(this.angle) * this.speed;
+            this.opacity = this.baseOpacity + Math.sin(Date.now() * 0.002 + this.x) * 0.15;
+            
+            if (this.x < 0 || this.x > canvas.width) this.x = Math.random() * canvas.width;
+            if (this.y < 0 || this.y > canvas.height) this.y = Math.random() * canvas.height;
+        }
+        draw() {
+            ctx.fillStyle = `rgba(255, 255, 255, ${this.opacity})`;
+            ctx.beginPath();
+            ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+            ctx.fill();
+        }
+    }
+
+    function initParticles() {
+        particles = [];
+        for (let i = 0; i < 120; i++) {
+            particles.push(new CosmicParticle());
+        }
+    }
+
+    function animateSpace() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        particles.forEach(p => {
+            p.update();
+            p.draw();
+        });
+        requestAnimationFrame(animateSpace);
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+        initParticles();
+        animateSpace();
+        loopStars();
+    });
 </script>
 </body>
 </html>
+
