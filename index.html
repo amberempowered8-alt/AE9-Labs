@@ -6,14 +6,19 @@
     <title>AE9-Labs | Brand & Digital Systems</title>
     <style>
         :root {
-            --bg-space: #020617;
-            --bg-space-light: #0b1329;
-            --card-bg: rgba(30, 41, 59, 0.7);
-            --accent: #38bdf8;
-            --accent-glow: rgba(56, 189, 248, 0.3);
+            /* Deep violet-space base inspired by the reference image */
+            --bg-space: #0b071e;
+            --bg-space-light: #160e33;
+            --card-bg: rgba(26, 19, 54, 0.45);
+            
+            /* Tech meets Celestial Matrix Greens & Blues */
+            --accent-green: #10b981;
+            --accent-blue: #06b6d4;
+            --accent-glow: rgba(16, 185, 129, 0.25);
+            
             --text-light: #f8fafc;
-            --text-muted: #94a3b8;
-            --border: rgba(51, 65, 85, 0.6);
+            --text-muted: #a5b4fc;
+            --border: rgba(165, 180, 252, 0.15);
         }
 
         body {
@@ -30,42 +35,67 @@
             overflow-x: hidden;
         }
 
+        /* Abstract Vector Grid Wave Background simulating image_bc3572.png */
+        .wave-grid {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            opacity: 0.25;
+            background-image: 
+                radial-gradient(circle at 20% 30%, var(--accent-blue) 0%, transparent 40%),
+                radial-gradient(circle at 80% 70%, var(--accent-green) 0%, transparent 45%);
+            filter: blur(80px);
+        }
+
+        /* Animated grid overlay to give subtle movement */
+        body::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(rgba(16, 185, 129, 0.03) 1px, transparent 1px),
+                        linear-gradient(90deg, rgba(6, 182, 212, 0.03) 1px, transparent 1px);
+            background-size: 40px 40px;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        /* Twinkling Starfield */
         .starfield {
             position: absolute;
             top: 0; left: 0; width: 100%; height: 100%;
             pointer-events: none;
             z-index: 0;
             background-image: 
-                radial-gradient(white, rgba(255,255,255,.2) 2px, transparent 40px),
-                radial-gradient(white, rgba(255,255,255,.15) 1px, transparent 30px),
-                radial-gradient(white, rgba(255,255,255,.1) 2px, transparent 40px);
-            background-size: 550px 550px, 350px 350px, 250px 250px;
-            background-position: 0 0, 40px 60px, 130px 270px;
-            animation: starTwinkle 8s linear infinite;
+                radial-gradient(white, rgba(255,255,255,.2) 1.5px, transparent 30px),
+                radial-gradient(white, rgba(255,255,255,.1) 1px, transparent 20px);
+            background-size: 450px 450px, 300px 300px;
+            background-position: 0 0, 50px 80px;
+            animation: starTwinkle 6s ease-in-out infinite;
         }
 
         @keyframes starTwinkle {
-            0% { opacity: 0.6; }
-            50% { opacity: 0.9; }
-            100% { opacity: 0.6; }
+            0%, 100% { opacity: 0.4; }
+            50% { opacity: 0.8; }
         }
 
+        /* Shooting Star System */
         .shooting-star {
             position: absolute;
             left: 100%;
             width: 100px;
             height: 2px;
-            background: linear-gradient(-45deg, rgba(56, 189, 248, 1), rgba(0,0,0,0));
-            filter: drop-shadow(0 0 6px var(--accent));
+            background: linear-gradient(-45deg, var(--accent-green), rgba(0,0,0,0));
+            filter: drop-shadow(0 0 6px var(--accent-green));
             pointer-events: none;
             z-index: 0;
             opacity: 0;
         }
 
         @keyframes shoot {
-            0% { transform: translateX(0) translateY(0) rotate(-25deg); opacity: 1; }
+            0% { transform: translateX(0) translateY(0) rotate(-20deg); opacity: 1; }
             10% { opacity: 1; }
-            100% { transform: translateX(-120vw) translateY(50vh) rotate(-25deg); opacity: 0; }
+            100% { transform: translateX(-120vw) translateY(40vh) rotate(-20deg); opacity: 0; }
         }
 
         .container {
@@ -81,16 +111,20 @@
         }
 
         header h1 { 
-            font-size: 3rem; 
-            font-weight: 800;
-            letter-spacing: 2px; 
+            font-size: 3.2rem; 
+            font-weight: 900;
+            letter-spacing: 3px; 
             margin-bottom: 10px; 
             color: var(--text-light); 
-            text-shadow: 0 0 20px var(--accent-glow);
+            text-shadow: 0 0 30px rgba(16, 185, 129, 0.2);
         }
         
-        header h1 span { color: var(--accent); }
-        header p { color: var(--text-muted); font-size: 1.1rem; }
+        header h1 span { 
+            background: linear-gradient(90deg, var(--accent-green), var(--accent-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        header p { color: var(--text-muted); font-size: 1.1rem; letter-spacing: 0.5px; }
 
         .grid {
             display: grid;
@@ -101,25 +135,25 @@
 
         .card {
             background: var(--card-bg);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
             border: 1px solid var(--border);
             border-radius: 16px;
             padding: 30px;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
+            transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
         }
 
         .card:hover {
             transform: translateY(-5px);
-            border-color: var(--accent);
-            box-shadow: 0 0 25px rgba(56, 189, 248, 0.15);
+            border-color: var(--accent-green);
+            box-shadow: 0 0 30px rgba(16, 185, 129, 0.12);
         }
 
         .card h3 { margin-top: 0; font-size: 1.4rem; color: var(--text-light); letter-spacing: 0.5px; }
-        .price { font-size: 2rem; font-weight: bold; color: var(--accent); margin: 15px 0; }
+        .price { font-size: 2.2rem; font-weight: bold; color: var(--accent-green); margin: 15px 0; }
         .features { list-style: none; padding: 0; margin: 0 0 20px 0; color: var(--text-muted); }
         .features li { margin-bottom: 12px; font-size: 0.95rem; }
 
@@ -138,10 +172,15 @@
             color: var(--text-light);
         }
 
+        /* Checkbox styling */
+        input[type="checkbox"] {
+            accent-color: var(--accent-green);
+        }
+
         form {
             background: var(--card-bg);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
             border: 1px solid var(--border);
             padding: 40px;
             border-radius: 16px;
@@ -149,12 +188,12 @@
         }
 
         .form-group { margin-bottom: 25px; }
-        label { display: block; margin-bottom: 8px; font-weight: 500; font-size: 0.95rem; }
+        label { display: block; margin-bottom: 8px; font-weight: 500; font-size: 0.95rem; color: var(--text-muted); }
         
         input[type="text"], input[type="email"], select {
             width: 100%;
             padding: 14px;
-            background: rgba(15, 23, 42, 0.6);
+            background: rgba(11, 7, 30, 0.6);
             border: 1px solid var(--border);
             color: white;
             border-radius: 8px;
@@ -165,29 +204,32 @@
 
         input:focus, select:focus {
             outline: none;
-            border-color: var(--accent);
+            border-color: var(--accent-green);
+            box-shadow: 0 0 10px rgba(16, 185, 129, 0.1);
         }
 
         button {
             width: 100%;
             padding: 16px;
-            background: var(--accent);
-            color: #020617;
+            background: linear-gradient(90deg, var(--accent-green), var(--accent-blue));
+            color: #0b071e;
             font-weight: 700;
             border: none;
             border-radius: 8px;
             cursor: pointer;
             font-size: 1.05rem;
-            letter-spacing: 0.5px;
-            transition: background 0.2s, transform 0.1s;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: filter 0.2s, transform 0.1s;
         }
 
-        button:hover { background: #7dd3fc; }
+        button:hover { filter: brightness(1.1); }
         button:active { transform: scale(0.99); }
     </style>
 </head>
 <body>
 
+<div class="wave-grid"></div>
 <div class="starfield"></div>
 <div class="shooting-star" id="meteor"></div>
 
@@ -198,7 +240,7 @@
     </header>
 
     <div class="grid">
-        <!-- Tier 1: Updated Merch Suite -->
+        <!-- Tier 1: Merch Only Suite -->
         <div class="card">
             <div>
                 <h3>Brand Asset Suite</h3>
@@ -255,7 +297,7 @@
 
     <!-- Booking Intake Form targeting Basin Endpoints -->
     <form action="https://usebasin.com/f/YOUR_BASIN_ENDPOINT_ID" method="POST">
-        <h2 style="margin-top:0; margin-bottom:25px;">Initialize Your Pipeline</h2>
+        <h2 style="margin-top:0; margin-bottom:25px; text-shadow: 0 0 15px rgba(16, 185, 129, 0.15);">Initialize Your Pipeline</h2>
         
         <div class="form-group">
             <label for="name">Full Name or Business Name</label>
@@ -297,7 +339,7 @@
     }
 
     function loopStars() {
-        const randomDelay = Math.floor(Math.random() * (15000 - 8000)) + 8000;
+        const randomDelay = Math.floor(Math.random() * (16000 - 9000)) + 9000;
         setTimeout(() => { triggerShootingStar(); loopStars(); }, randomDelay);
     }
     window.onload = loopStars;
