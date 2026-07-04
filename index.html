@@ -3,31 +3,78 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Digital Stack & Brand Agency</title>
+    <title>AE9-Labs | Brand & Digital Systems</title>
     <style>
         :root {
-            --bg-dark: #0f172a;
-            --card-bg: #1e293b;
+            --bg-space: #020617;
+            --bg-space-light: #0b1329;
+            --card-bg: rgba(30, 41, 59, 0.7);
             --accent: #38bdf8;
+            --accent-glow: rgba(56, 189, 248, 0.3);
             --text-light: #f8fafc;
             --text-muted: #94a3b8;
-            --border: #334155;
+            --border: rgba(51, 65, 85, 0.6);
         }
 
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-            background-color: var(--bg-dark);
+            background: linear-gradient(135deg, var(--bg-space), var(--bg-space-light));
             color: var(--text-light);
             margin: 0;
             padding: 40px 20px;
             display: flex;
             flex-direction: column;
             align-items: center;
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Twinkling Starfield Layer */
+        .starfield {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            background-image: 
+                radial-gradient(white, rgba(255,255,255,.2) 2px, transparent 40px),
+                radial-gradient(white, rgba(255,255,255,.15) 1px, transparent 30px),
+                radial-gradient(white, rgba(255,255,255,.1) 2px, transparent 40px);
+            background-size: 550px 550px, 350px 350px, 250px 250px;
+            background-position: 0 0, 40px 60px, 130px 270px;
+            animation: starTwinkle 8s linear infinite;
+        }
+
+        @keyframes starTwinkle {
+            0% { opacity: 0.6; }
+            50% { opacity: 0.9; }
+            100% { opacity: 0.6; }
+        }
+
+        /* Shooting Star System */
+        .shooting-star {
+            position: absolute;
+            left: 100%;
+            width: 100px;
+            height: 2px;
+            background: linear-gradient(-45deg, rgba(56, 189, 248, 1), rgba(0,0,0,0));
+            filter: drop-shadow(0 0 6px var(--accent));
+            pointer-events: none;
+            z-index: 0;
+            opacity: 0;
+        }
+
+        @keyframes shoot {
+            0% { transform: translateX(0) translateY(0) rotate(-25deg); opacity: 1; }
+            10% { opacity: 1; }
+            100% { transform: translateX(-120vw) translateY(50vh) rotate(-25deg); opacity: 0; }
         }
 
         .container {
-            max-width: 1100px;
+            max-width: 1000px;
             width: 100%;
+            position: relative;
+            z-index: 10;
         }
 
         header {
@@ -35,36 +82,48 @@
             margin-bottom: 50px;
         }
 
-        h1 { font-size: 2.5rem; margin-bottom: 10px; color: var(--text-light); }
-        p { color: var(--text-muted); font-size: 1.1rem; }
+        header h1 { 
+            font-size: 3rem; 
+            font-weight: 800;
+            letter-spacing: 2px; 
+            margin-bottom: 10px; 
+            color: var(--text-light); 
+            text-shadow: 0 0 20px var(--accent-glow);
+        }
+        
+        header h1 span { color: var(--accent); }
+        header p { color: var(--text-muted); font-size: 1.1rem; }
 
         .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
             margin-bottom: 50px;
         }
 
         .card {
             background: var(--card-bg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
             border: 1px solid var(--border);
-            border-radius: 12px;
-            padding: 25px;
+            border-radius: 16px;
+            padding: 30px;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            transition: transform 0.2s, border-color 0.2s;
+            transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
         }
 
         .card:hover {
-            transform: translateY(-4px);
+            transform: translateY(-5px);
             border-color: var(--accent);
+            box-shadow: 0 0 25px rgba(56, 189, 248, 0.15);
         }
 
-        .card h3 { margin-top: 0; font-size: 1.3rem; color: var(--text-light); }
-        .price { font-size: 1.8rem; font-weight: bold; color: var(--accent); margin: 15px 0; }
+        .card h3 { margin-top: 0; font-size: 1.4rem; color: var(--text-light); letter-spacing: 0.5px; }
+        .price { font-size: 2rem; font-weight: bold; color: var(--accent); margin: 15px 0; }
         .features { list-style: none; padding: 0; margin: 0 0 20px 0; color: var(--text-muted); }
-        .features li { margin-bottom: 8px; font-size: 0.9rem; }
+        .features li { margin-bottom: 12px; font-size: 0.95rem; }
 
         .addon-ui {
             border-top: 1px solid var(--border);
@@ -77,80 +136,78 @@
             align-items: center;
             gap: 10px;
             cursor: pointer;
-            font-size: 0.85rem;
+            font-size: 0.9rem;
             color: var(--text-light);
         }
 
         form {
             background: var(--card-bg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
             border: 1px solid var(--border);
             padding: 40px;
-            border-radius: 12px;
+            border-radius: 16px;
             margin-top: 20px;
         }
 
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-        label { display: block; margin-bottom: 8px; font-weight: 500; }
+        .form-group { margin-bottom: 25px; }
+        label { display: block; margin-bottom: 8px; font-weight: 500; font-size: 0.95rem; }
+        
         input[type="text"], input[type="email"], select {
             width: 100%;
-            padding: 12px;
-            background: var(--bg-dark);
+            padding: 14px;
+            background: rgba(15, 23, 42, 0.6);
             border: 1px solid var(--border);
             color: white;
-            border-radius: 6px;
+            border-radius: 8px;
             box-sizing: border-box;
+            font-size: 1rem;
+            transition: border-color 0.2s;
+        }
+
+        input:focus, select:focus {
+            outline: none;
+            border-color: var(--accent);
         }
 
         button {
             width: 100%;
-            padding: 15px;
+            padding: 16px;
             background: var(--accent);
-            color: var(--bg-dark);
-            font-weight: bold;
+            color: #020617;
+            font-weight: 700;
             border: none;
-            border-radius: 6px;
+            border-radius: 8px;
             cursor: pointer;
-            font-size: 1rem;
-            transition: background 0.2s;
+            font-size: 1.05rem;
+            letter-spacing: 0.5px;
+            transition: background 0.2s, transform 0.1s;
         }
 
         button:hover { background: #7dd3fc; }
+        button:active { transform: scale(0.99); }
     </style>
 </head>
 <body>
 
+<div class="starfield"></div>
+<div class="shooting-star" id="meteor"></div>
+
 <div class="container">
     <header>
-        <h1>Brand Launch Core</h1>
-        <p>Pick a dedicated digital platform, automate your physical merch fulfillment, or bundle both seamlessly.</p>
+        <h1>AE9-<span>Labs</span></h1>
+        <p>Asynchronous Digital Architecture & Automated Physical Identity Systems</p>
     </header>
 
     <div class="grid">
-        <!-- Tier 1: Office Starter Pack -->
+        <!-- Tier 1: Merch Only Suite -->
         <div class="card">
             <div>
-                <h3>Office Starter Pack</h3>
-                <p style="font-size:0.8rem; color:var(--text-muted); margin-top:4px;">Core Printify Assets</p>
-                <div class="price">$150</div>
-                <ul class="features">
-                    <li>✓ 1 Premium Custom T-Shirt</li>
-                    <li>✓ 1 Stainless Steel Mug</li>
-                    <li>✓ 1 Non-Slip Mouse Pad</li>
-                    <li>✓ 1 Sheet Custom Stickers</li>
-                </ul>
-            </div>
-        </div>
-
-        <!-- Tier 2: BYO Brand Suite -->
-        <div class="card">
-            <div>
-                <h3>BYO Brand Suite</h3>
-                <p style="font-size:0.8rem; color:var(--text-muted); margin-top:4px;">Complete Identity Kit</p>
+                <h3>Brand Asset Suite</h3>
+                <p style="font-size:0.85rem; color:var(--text-muted); margin-top:4px;">Physical Identity Kit</p>
                 <div class="price">$300</div>
                 <ul class="features">
+                    <li>✓ 1 Premium Custom Laptop Bag</li>
                     <li>✓ 2 Premium Custom T-Shirts</li>
                     <li>✓ 1 Stainless Steel Mug</li>
                     <li>✓ 1 Non-Slip Mouse Pad</li>
@@ -161,51 +218,46 @@
             </div>
         </div>
 
-        <!-- Tier 3: Basic Build -->
+        <!-- Tier 2: Basic Build -->
         <div class="card">
             <div>
                 <h3>Basic 3-Page Website</h3>
-                <p style="font-size:0.8rem; color:var(--text-muted); margin-top:4px;">Async Digital Build</p>
-                <div class="price" id="basic-price">$890</div>
+                <p style="font-size:0.85rem; color:var(--text-muted); margin-top:4px;">Async Digital Core</p>
+                <div class="price" id="basic-price">$900</div>
                 <ul class="features">
-                    <li>✓ Home, Services, Contact</li>
-                    <li>✓ Fully Responsive Design</li>
-                    <li>✓ Secure Code via GitHub</li>
+                    <li>✓ Home, Services, Contact Layouts</li>
+                    <li>✓ Fully Responsive UI Architecture</li>
+                    <li>✓ Clean Code delivered via GitHub</li>
                 </ul>
             </div>
             <div class="addon-ui">
                 <label class="addon-label">
-                    <input type="checkbox" id="addon-basic" onchange="toggleAddon('basic', 120)"> 
-                    Add Starter Pack (+$120 Bundle Price)
+                    <input type="checkbox" id="addon-basic" onchange="toggleAddon(150)"> 
+                    Add Brand Suite (+$150 Bundle Price)
                 </label>
             </div>
         </div>
 
-        <!-- Tier 4: Growth Partner -->
+        <!-- Tier 3: Growth Partner 6-Month Contract -->
         <div class="card">
             <div>
                 <h3>Growth Partner Tier</h3>
-                <p style="font-size:0.8rem; color:var(--text-muted); margin-top:4px;">Continuous Scale Plan</p>
-                <div class="price" id="partner-price">$1,500</div>
+                <p style="font-size:0.85rem; color:var(--text-muted); margin-top:4px;">Complete Operations Scaler</p>
+                <div class="price">$1,500</div>
                 <ul class="features">
-                    <li>✓ Basic 3-Page Website</li>
-                    <li>✓ Leads-to-Text CRM System</li>
-                    <li>✓ Ongoing Code Maintenance</li>
-                    <li>* Requires $99/mo Retainer</li>
+                    <li>✓ Basic 3-Page Web Platform Build</li>
+                    <li>✓ Leads-to-Text CRM System Backend</li>
+                    <li>✓ Continuous Maintenance & Updates</li>
+                    <li>🎁 Includes FULL Brand Asset Suite</li>
+                    <li>* Requires 6-Month Contract Plan ($99/mo)</li>
                 </ul>
-            </div>
-            <div class="addon-ui">
-                <label class="addon-label">
-                    <input type="checkbox" id="addon-partner" onchange="toggleAddon('partner', 220)"> 
-                    Add Full Brand Suite (+$220 Partner Price)
-                </label>
             </div>
         </div>
     </div>
 
     <!-- Booking Intake Form targeting Basin Endpoints -->
     <form action="https://usebasin.com/f/YOUR_BASIN_ENDPOINT_ID" method="POST">
-        <h2 style="margin-top:0; margin-bottom:25px;">Launch Your Pipeline</h2>
+        <h2 style="margin-top:0; margin-bottom:25px;">Initialize Your Pipeline</h2>
         
         <div class="form-group">
             <label for="name">Full Name or Business Name</label>
@@ -220,12 +272,10 @@
         <div class="form-group">
             <label for="package">Select Target Configuration</label>
             <select id="package" name="package" required>
-                <option value="starter-merch">Office Starter Pack Only ($150)</option>
-                <option value="suite-merch">BYO Brand Suite Only ($300)</option>
-                <option value="basic-3page">Basic 3-Page Website ($890)</option>
-                <option value="basic-3page-merch">Basic 3-Page Website + Starter Pack ($1,010)</option>
-                <option value="growth-partner">Growth Partner Setup ($1,500)</option>
-                <option value="growth-partner-merch">Growth Partner Setup + Full Brand Suite ($1,720)</option>
+                <option value="suite-merch">Brand Asset Suite Only ($300)</option>
+                <option value="basic-3page">Basic 3-Page Website ($900)</option>
+                <option value="basic-3page-merch">Basic 3-Page Website + Brand Suite ($1,050)</option>
+                <option value="growth-partner-allin">Growth Partner Tier [6-Mo Agreement] ($1,500)</option>
             </select>
         </div>
 
@@ -234,17 +284,38 @@
 </div>
 
 <script>
-    function toggleAddon(tier, addonCost) {
-        if(tier === 'basic') {
-            const basePrice = 890;
-            const isChecked = document.getElementById('addon-basic').checked;
-            document.getElementById('basic-price').innerText = "$" + (isChecked ? (basePrice + addonCost) : basePrice);
-        } else if(tier === 'partner') {
-            const basePrice = 1500;
-            const isChecked = document.getElementById('addon-partner').checked;
-            document.getElementById('partner-price').innerText = "$" + (isChecked ? (basePrice + addonCost) : basePrice);
-        }
+    // Handles Tier 2 dynamic price updating
+    function toggleAddon(addonCost) {
+        const basePrice = 900;
+        const isChecked = document.getElementById('addon-basic').checked;
+        document.getElementById('basic-price').innerText = "$" + (isChecked ? (basePrice + addonCost) : basePrice);
     }
+
+    // Handles random shooting star timing and entry heights
+    function triggerShootingStar() {
+        const star = document.getElementById('meteor');
+        const randomTop = Math.floor(Math.random() * 40); // restricts to top 40% of page
+        
+        star.style.top = randomTop + "vh";
+        star.style.animation = "shoot 1.5s cubic-bezier(0.25, 1, 0.5, 1) forwards";
+        
+        // Clear animation property so it can re-trigger later
+        setTimeout(() => {
+            star.style.animation = "none";
+        }, 1500);
+    }
+
+    // Runs a random shooting star check loop every 8-15 seconds
+    function loopStars() {
+        const randomDelay = Math.floor(Math.random() * (15000 - 8000)) + 8000;
+        setTimeout(() => {
+            triggerShootingStar();
+            loopStars();
+        }, randomDelay);
+    }
+    
+    // Start loop on page load
+    window.onload = loopStars;
 </script>
 </body>
 </html>
