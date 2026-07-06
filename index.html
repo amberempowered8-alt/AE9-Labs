@@ -140,9 +140,9 @@
         .card-detail { margin-bottom: 14px; font-size: 0.95rem; line-height: 1.5; color: var(--text-muted); }
         .card-detail strong { color: var(--text-light); }
 
-        .card.trust { border-color: rgba(6, 182, 212, 0.3); }
-        .card.wellness { border-color: rgba(16, 185, 129, 0.3); }
-        .card.obsidian { border-color: rgba(168, 85, 247, 0.3); }
+        .card.corporate { border-color: rgba(6, 182, 212, 0.3); }
+        .card.lifestyle { border-color: rgba(16, 185, 129, 0.3); }
+        .card.creatives { border-color: rgba(168, 85, 247, 0.3); }
 
         /* Merchandise Showroom */
         .merch-showroom {
@@ -266,41 +266,44 @@
     <div class="about-factory">
         <h2>⚡ Operational Profile: What is AE9-Labs?</h2>
         <p>
-            AE9-Labs is a 100% automated digital factory engineered for modern creators, small business builders, and storefront operators. We construct deployment-ready brand infrastructure blueprints on autopilot. Instead of getting stuck in long design consults, manual editing loops, or cold sales pitches, owners browse our targeted architectural collections, pick a library style layer, and instantly secure their complete digital code setup alongside automated print-ready custom workspace merchandise configurations. 
+            AE9-Labs is a 100% automated digital factory engineered for modern creators, small business builders, and storefront operators. We construct deployment-ready brand infrastructure blueprints on autopilot. Instead of getting stuck in long design consults, manual editing loops, or cold sales pitches, owners browse our targeted architectural collections, pick an industry layer, and instantly secure their complete digital code setup alongside automated print-ready custom workspace merchandise configurations. 
         </p>
     </div>
 
     <div class="section-title">Structural Design Libraries</div>
-    <div class="section-subtitle">Select your base architecture layer during checkout</div>
+    <div class="section-subtitle">Select your industry base layer during checkout</div>
 
     <div class="grid">
-        <div class="card trust">
+        <!-- Card 1: Corporate & Tech Systems -->
+        <div class="card corporate">
             <div>
-                <h3>1. Trust & Enterprise</h3>
+                <h3>1. Corporate & Tech Systems</h3>
                 <div class="color-profile">Color Profile: Corporate Blue & Slate Cyan</div>
                 <div class="card-detail">⚡ <strong>Vibe:</strong> Sharp, geometric structural grids</div>
                 <div class="card-detail">📦 <strong>Pages:</strong> Home, Services, Secure Contact</div>
-                <div class="card-detail">🎯 <strong>Target:</strong> Tech Startups, SaaS, Consultants, Legal & Financial Professionals</div>
+                <div class="card-detail">🎯 <strong>Target:</strong> Tech Startups, SaaS, Consultants, Legal, Corporate & Financial Professionals</div>
             </div>
         </div>
 
-        <div class="card wellness">
+        <!-- Card 2: Lifestyle & Wellness -->
+        <div class="card lifestyle">
             <div>
-                <h3>2. Earth & Wellness</h3>
+                <h3>2. Lifestyle & Wellness</h3>
                 <div class="color-profile">Color Profile: Sage Green & Luxury Organic Cream</div>
                 <div class="card-detail">⚡ <strong>Vibe:</strong> Airy whitespace, premium typography</div>
                 <div class="card-detail">📦 <strong>Pages:</strong> Home, Showcase Catalog, About/Contact</div>
-                <div class="card-detail">🎯 <strong>Target:</strong> Boutique Retail, Metaphysical Shops, Salons, High-End Wellness Brands</div>
+                <div class="card-detail">🎯 <strong>Target:</strong> Boutique Retail, Herbalists, Gardeners, Salons, Fitness & High-End Wellness Brands</div>
             </div>
         </div>
 
-        <div class="card obsidian">
+        <!-- Card 3: Creatives & Modern Media -->
+        <div class="card creatives">
             <div>
-                <h3>3. Obsidian Bold</h3>
+                <h3>3. Creatives & Modern Media</h3>
                 <div class="color-profile">Color Profile: Pure Dark Mode & High-Contrast Neon</div>
                 <div class="card-detail">⚡ <strong>Vibe:</strong> Dark canvas layouts, rich glowing elements</div>
                 <div class="card-detail">📦 <strong>Pages:</strong> Home, Portfolio, Booking Pipeline</div>
-                <div class="card-detail">🎯 <strong>Target:</strong> Digital Creators, Developers, Apparel Lines, Modern Agencies</div>
+                <div class="card-detail">🎯 <strong>Target:</strong> Digital Creators, Freelance Developers, Apparel Lines, Studios & Modern Agencies</div>
             </div>
         </div>
     </div>
@@ -313,7 +316,7 @@
             <div class="merch-manifest">
                 <h3>🚀 The Ultimate Brand Merchandise Bundle</h3>
                 <p style="color: var(--text-muted); line-height: 1.6; margin-bottom: 15px;">
-                    Upgrade any structural library template package during checkout to instantly map your brand assets onto our curated premium workspace inventory sequence.
+                    Upgrade any architectural library template package during checkout to instantly map your brand assets onto our curated premium workspace inventory sequence.
                 </p>
                 <ul>
                     <li>🎒 1 Premium Custom Laptop Backpack</li>
@@ -341,10 +344,10 @@
             <div class="form-group">
                 <label for="library">Target Base Architectural Library</label>
                 <select id="library" name="library" required onchange="calculateTotal()">
-                    <option value="none">-- Select a Target Layer --</option>
-                    <option value="trust">Trust & Enterprise Blueprint ($199)</option>
-                    <option value="wellness">Earth & Wellness Blueprint ($199)</option>
-                    <option value="obsidian">Obsidian Bold Blueprint ($199)</option>
+                    <option value="none">-- Select an Industry Layer --</option>
+                    <option value="trust">Corporate & Tech Systems Blueprint ($199)</option>
+                    <option value="wellness">Lifestyle & Wellness Blueprint ($199)</option>
+                    <option value="obsidian">Creatives & Modern Media Blueprint ($199)</option>
                 </select>
             </div>
 
