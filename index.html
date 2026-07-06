@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AE9-Labs | Automated Digital Architecture</title>
+    <title>AE9-Labs | Automated Digital Product Factory</title>
     <style>
         :root {
             --bg-space: #050212;
-            --card-bg: rgba(13, 8, 38, 0.45);
+            --card-bg: rgba(13, 8, 38, 0.55);
             --accent-green: #10b981;
             --accent-purple: #a855f7;
             --accent-cyan: #06b6d4;
@@ -37,8 +37,8 @@
             pointer-events: none;
             mix-blend-mode: screen;
             background: 
-                radial-gradient(circle at 20% 30%, rgba(168, 85, 247, 0.2) 0%, transparent 50%),
-                radial-gradient(circle at 80% 70%, rgba(16, 185, 129, 0.15) 0%, transparent 50%);
+                radial-gradient(circle at 15% 25%, rgba(168, 85, 247, 0.2) 0%, transparent 50%),
+                radial-gradient(circle at 85% 75%, rgba(16, 185, 129, 0.15) 0%, transparent 50%);
         }
 
         .container {
@@ -54,12 +54,12 @@
             align-items: center;
             justify-content: center;
             text-align: center;
-            margin-bottom: 60px;
+            margin-bottom: 50px;
         }
 
         header img.brand-logo {
-            width: 180px;         
-            height: 180px;        
+            width: 180px;
+            height: 180px;
             border-radius: 50%;
             border: 3px solid var(--accent-green);
             box-shadow: 0 0 35px rgba(16, 185, 129, 0.5);
@@ -70,7 +70,7 @@
 
         @keyframes cosmicFloat {
             0% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); box-shadow: 0 15px 40px rgba(16, 185, 129, 0.6); }
+            50% { transform: translateY(-10px); }
             100% { transform: translateY(0px); }
         }
 
@@ -79,8 +79,6 @@
             font-weight: 900;
             letter-spacing: 4px; 
             margin-bottom: 10px; 
-            color: var(--text-light); 
-            text-shadow: 0 0 25px rgba(168, 85, 247, 0.4);
         }
         
         header h1 span { 
@@ -88,22 +86,39 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
-        header p { color: var(--text-muted); font-size: 1.1rem; letter-spacing: 0.5px; max-width: 700px; }
+        header p { color: var(--text-muted); font-size: 1.1rem; max-width: 700px; line-height: 1.6; }
+
+        /* About Section UI Block */
+        .about-factory {
+            background: rgba(13, 8, 38, 0.3);
+            border: 1px solid rgba(168, 85, 247, 0.15);
+            border-radius: 16px;
+            padding: 35px;
+            margin-bottom: 60px;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+        .about-factory h2 { margin-top: 0; font-size: 1.8rem; color: var(--text-light); letter-spacing: 1px; }
+        .about-factory p { color: var(--text-muted); line-height: 1.7; font-size: 1.05rem; margin-bottom: 0; }
 
         .section-title {
             text-align: center;
-            font-size: 1.8rem;
-            margin-bottom: 30px;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            color: var(--text-light);
-            text-shadow: 0 0 10px rgba(6, 182, 212, 0.3);
+            font-size: 2rem;
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+            text-shadow: 0 0 15px rgba(6, 182, 212, 0.2);
+        }
+        .section-subtitle {
+            text-align: center;
+            color: var(--text-muted);
+            margin-bottom: 40px;
+            font-size: 1rem;
         }
 
         .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 25px;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
             margin-bottom: 60px;
         }
 
@@ -113,51 +128,72 @@
             -webkit-backdrop-filter: blur(20px);
             border: 1px solid var(--border);
             border-radius: 16px;
-            padding: 30px;
+            padding: 35px;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-            transition: border-color 0.3s;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
         }
 
-        .card:hover {
-            border-color: var(--accent-cyan);
-        }
-
-        .card h3 { margin-top: 0; font-size: 1.5rem; color: var(--text-light); letter-spacing: 0.5px; }
+        .card h3 { margin-top: 0; font-size: 1.6rem; color: var(--text-light); }
+        .color-profile { font-size: 0.9rem; color: var(--text-muted); font-style: italic; margin-bottom: 20px; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 10px; }
         
-        .card:nth-child(1) h3 { color: var(--accent-cyan); }
-        .card:nth-child(2) h3 { color: var(--accent-green); }
-        .card:nth-child(3) h3 { color: var(--accent-purple); }
+        /* Layout formatting mapping image_ebb789.png */
+        .card-detail { margin-bottom: 14px; font-size: 0.95rem; line-height: 1.5; color: var(--text-muted); }
+        .card-detail strong { color: var(--text-light); }
 
-        .library-vibe {
-            font-size: 0.85rem;
-            color: var(--text-muted);
-            font-style: italic;
-            margin-bottom: 15px;
+        .card.trust { border-color: rgba(6, 182, 212, 0.3); }
+        .card.wellness { border-color: rgba(16, 185, 129, 0.3); }
+        .card.obsidian { border-color: rgba(168, 85, 247, 0.3); }
+
+        /* Interactive Merchandise Showroom Layout */
+        .merch-showroom {
+            background: rgba(13, 8, 38, 0.4);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 40px;
+            margin-bottom: 60px;
         }
 
-        .features { list-style: none; padding: 0; margin: 0 0 20px 0; color: var(--text-muted); }
-        .features li { margin-bottom: 12px; font-size: 0.95rem; }
-        .features strong { color: var(--text-light); }
+        .showroom-layout {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 30px;
+        }
+        @media (min-width: 768px) {
+            .showroom-layout { grid-template-columns: 1fr 1fr; }
+        }
 
-        form {
+        .mockup-main-image {
+            width: 100%;
+            border-radius: 12px;
+            border: 1px solid rgba(255,255,255,0.1);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+        }
+
+        .merch-manifest {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .merch-manifest h3 { font-size: 1.6rem; margin-top: 0; color: var(--accent-green); }
+        .merch-manifest ul { list-style: none; padding: 0; margin: 20px 0; }
+        .merch-manifest li { margin-bottom: 15px; font-size: 1.05rem; display: flex; align-items: center; gap: 10px; }
+
+        /* Unified Checkout UI Box */
+        .checkout-box {
             background: var(--card-bg);
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
             border: 1px solid var(--border);
             padding: 40px;
             border-radius: 16px;
-            max-width: 600px;
-            margin: 0 auto;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
         }
 
         .form-group { margin-bottom: 25px; }
         label { display: block; margin-bottom: 8px; color: var(--text-muted); font-size: 0.95rem; }
         
-        input[type="text"], input[type="email"], select {
+        input[type="email"], select {
             width: 100%;
             padding: 14px;
             background: rgba(5, 2, 18, 0.7);
@@ -168,27 +204,40 @@
             font-size: 1rem;
         }
 
-        input:focus, select:focus {
-            outline: none;
-            border-color: var(--accent-green);
+        .checkbox-group {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-top: 15px;
+            background: rgba(5, 2, 18, 0.4);
+            padding: 20px;
+            border-radius: 8px;
         }
 
-        .addon-container {
-            background: rgba(168, 85, 247, 0.05);
-            border: 1px dashed var(--border);
-            padding: 15px;
-            border-radius: 8px;
-            margin-bottom: 25px;
+        .checkbox-label {
             display: flex;
-            align-items: center;
+            align-items: flex-start;
             gap: 12px;
             cursor: pointer;
+            font-size: 0.95rem;
         }
 
-        .addon-container input {
+        input[type="checkbox"] {
             accent-color: var(--accent-green);
-            transform: scale(1.2);
+            width: 18px;
+            height: 18px;
+            margin-top: 2px;
         }
+
+        .total-display {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin: 25px 0;
+            text-align: right;
+            border-top: 1px solid var(--border);
+            padding-top: 15px;
+        }
+        .total-display span { color: var(--accent-green); font-size: 1.8rem; }
 
         button {
             width: 100%;
@@ -202,10 +251,7 @@
             font-size: 1.1rem;
             text-transform: uppercase;
             letter-spacing: 1px;
-            box-shadow: 0 4px 15px rgba(168, 85, 247, 0.3);
         }
-
-        button:hover { filter: brightness(1.2); }
     </style>
 </head>
 <body>
@@ -216,98 +262,134 @@
     <header>
         <img src="logo.png" alt="AE9-Labs Official Logo" class="brand-logo" onerror="this.style.display='none';">
         <h1>AE9-<span>Labs</span></h1>
-        <p>Automated Digital Architecture & Curated Identity Infrastructure</p>
+        <p>Asynchronous Digital Factory & Hands-Free Brand Blueprint Architecture</p>
     </header>
 
-    <div class="section-title">Explore The Structural Libraries</div>
-    
+    <!-- Operational Profile Block -->
+    <div class="about-factory">
+        <h2>⚡ Operational Profile: What is AE9-Labs?</h2>
+        <p>
+            AE9-Labs is a 100% automated digital factory designed for modern creators, digital builders, and storefront operators. We engineer comprehensive, deployment-ready asset blueprints. Rather than dealing with prolonged design consultations, manual edits, or traditional cold sales loops, creators browse our highly defined psychological architectural libraries, pick their structural system, and instantly download a complete digital platform alongside automated production-ready merchandise blueprints. It is corporate infrastructure on autopilot.
+        </p>
+    </div>
+
+    <div class="section-title">Structural Design Libraries</div>
+    <div class="section-subtitle">Select your base architecture layer during checkout</div>
+
+    <!-- Pricing Packages mapping image_ebb789.png layout parameters -->
     <div class="grid">
-        <!-- Library 1: Trust & Enterprise -->
-        <div class="card">
+        <div class="card trust">
             <div>
                 <h3>1. Trust & Enterprise</h3>
-                <div class="library-vibe">Color Profile: Corporate Blue & Slate Cyan</div>
-                <ul class="features">
-                    <li>⚡ <strong>Vibe:</strong> Sharp, geometric structural grids</li>
-                    <li>📦 <strong>Pages:</strong> Home, Services, Secure Contact</li>
-                    <li>🎯 <strong>Target:</strong> Tech Startups, SaaS, Consultants, Legal & Financial Professionals</li>
-                </ul>
+                <div class="color-profile">Color Profile: Corporate Blue & Slate Cyan</div>
+                <div class="card-detail">⚡ <strong>Vibe:</strong> Sharp, geometric structural grids</div>
+                <div class="card-detail">📦 <strong>Pages:</strong> Home, Services, Secure Contact</div>
+                <div class="card-detail">🎯 <strong>Target:</strong> Tech Startups, SaaS, Consultants, Legal & Financial Professionals</div>
             </div>
         </div>
 
-        <!-- Library 2: Earth & Wellness -->
-        <div class="card">
+        <div class="card wellness">
             <div>
                 <h3>2. Earth & Wellness</h3>
-                <div class="library-vibe">Color Profile: Sage Green & Luxury Organic Cream</div>
-                <ul class="features">
-                    <li>⚡ <strong>Vibe:</strong> Airy whitespace, premium typography</li>
-                    <li>📦 <strong>Pages:</strong> Home, Showcase Catalog, About/Contact</li>
-                    <li>🎯 <strong>Target:</strong> Boutique Retail, Metaphysical Shops, Salons, High-End Wellness Brands</li>
-                </ul>
+                <div class="color-profile">Color Profile: Sage Green & Luxury Organic Cream</div>
+                <div class="card-detail">⚡ <strong>Vibe:</strong> Airy whitespace, premium typography</div>
+                <div class="card-detail">📦 <strong>Pages:</strong> Home, Showcase Catalog, About/Contact</div>
+                <div class="card-detail">🎯 <strong>Target:</strong> Boutique Retail, Metaphysical Shops, Salons, High-End Wellness Brands</div>
             </div>
         </div>
 
-        <!-- Library 3: Obsidian Bold -->
-        <div class="card">
+        <div class="card obsidian">
             <div>
                 <h3>3. Obsidian Bold</h3>
-                <div class="library-vibe">Color Profile: Pure Dark Mode & High-Contrast Neon</div>
-                <ul class="features">
-                    <li>⚡ <strong>Vibe:</strong> Dark canvas layouts, rich glowing elements</li>
-                    <li>📦 <strong>Pages:</strong> Home, Portfolio, Booking Pipeline</li>
-                    <li>🎯 <strong>Target:</strong> Digital Creators, Developers, Apparel Lines, Modern Agencies</li>
-                </ul>
+                <div class="color-profile">Color Profile: Pure Dark Mode & High-Contrast Neon</div>
+                <div class="card-detail">⚡ <strong>Vibe:</strong> Dark canvas layouts, rich glowing elements</div>
+                <div class="card-detail">📦 <strong>Pages:</strong> Home, Portfolio, Booking Pipeline</div>
+                <div class="card-detail">🎯 <strong>Target:</strong> Digital Creators, Developers, Apparel Lines, Modern Agencies</div>
             </div>
         </div>
     </div>
 
-    <!-- Unified Order Form targeting Basin Endpoints -->
-    <form action="https://usebasin.com/f/YOUR_BASIN_ENDPOINT_ID" method="POST">
-        <h2 style="margin-top:0; margin-bottom:25px; text-align:center;">Secure Instant Access</h2>
-        
-        <div class="form-group">
-            <label for="name">Your Name / Business Identity</label>
-            <input type="text" id="name" name="name" required placeholder="Jane Doe">
-        </div>
-
-        <div class="form-group">
-            <label for="email">Delivery Email Address (For digital assets)</label>
-            <input type="email" id="email" name="email" required placeholder="jane@example.com">
-        </div>
-
-        <div class="form-group">
-            <label for="library">1. Choose Your Library Asset Path</label>
-            <select id="library" name="library" required>
-                <option value="trust-enterprise">The Trust & Enterprise Library (Blue/Tech)</option>
-                <option value="earth-wellness">The Earth & Wellness Library (Sage/Organic)</option>
-                <option value="obsidian-bold">The Obsidian Bold Library (Dark Mode/Neon)</option>
-            </select>
-        </div>
-
-        <div class="form-group">
-            <label for="tier">2. Select Implementation Tier</label>
-            <select id="tier" name="tier" required>
-                <option value="code-only">Digital Asset Box: Code Only ($150)</option>
-                <option value="ultimate-brand-box">Ultimate Brand Box: Code + Printify Physical Merch Kit ($450)</option>
-            </select>
-        </div>
-
-        <!-- The 72-Hour Rapid Setup Automation Revenue Play -->
-        <label class="addon-container" for="rapid-setup">
-            <input type="checkbox" id="rapid-setup" name="rapid_setup_addon" value="Yes">
+    <!-- The Physical Production Showroom Layer -->
+    <div class="merch-showroom">
+        <div class="showroom-layout">
             <div>
-                <strong style="display:block; color:white; font-size:0.95rem;">Add 72-Hour Rapid Code Deployment (+$250)</strong>
-                <span style="display:block; color:var(--text-muted); font-size:0.85rem; margin-top:2px;">Skip the setup. We will deploy the files straight to your GitHub Pages domain for you.</span>
+                <!-- Mapped image resource representing physical package components -->
+                <img src="merch-mockup.png" alt="Ultimate Brand Package Showroom Assets" class="mockup-main-image" onerror="this.src='logo.png';">
             </div>
-        </label>
+            <div class="merch-manifest">
+                <h3>🚀 The Ultimate Brand Merchandise Bundle</h3>
+                <p style="color: var(--text-muted); line-height: 1.6; margin-bottom: 15px;">
+                    Upgrade any structural library template package during checkout to instantly map your brand assets onto our curated premium workspace inventory sequence.
+                </p>
+                <ul>
+                    <li>🎒 1 Premium Custom Laptop Backpack</li>
+                    <li>🗓️ 1 Standard Wall-Hanging Calendar</li>
+                    <li>👕 2 Premium Curated Brand T-Shirts</li>
+                    <li>🥤 1 Insulated Travel Tumbler</li>
+                    <li>🎴 1 Premium Micro-Weave Desktop Desk Pad</li>
+                </ul>
+                <span style="font-size:0.85rem; color: var(--accent-green); font-style:italic;">* Production lines linked directly via your fully automated pipeline.</span>
+            </div>
+        </div>
+    </div>
 
-        <button type="submit">Deploy My Brand Architecture</button>
-    </form>
+    <!-- Unified Secure Access Checkout Mapped to Basin -->
+    <div class="checkout-box">
+        <h2 style="margin-top:0; margin-bottom:25px;">Secure Instant Access</h2>
+        
+        <form action="https://usebasin.com/f/YOUR_BASIN_ENDPOINT_ID" method="POST" id="purchaseForm">
+            <div class="form-group">
+                <label for="email">Your Best Work Email (Where delivery data packets are routed)</label>
+                <input type="email" id="email" name="email" required placeholder="name@company.com">
+            </div>
+
+            <div class="form-group">
+                <label for="library">Target Base Architectural Library</label>
+                <select id="library" name="library" required onchange="calculateTotal()">
+                    <option value="none">-- Select a Target Layer --</option>
+                    <option value="trust">Trust & Enterprise Blueprint ($199)</option>
+                    <option value="wellness">Earth & Wellness Blueprint ($199)</option>
+                    <option value="obsidian">Obsidian Bold Blueprint ($199)</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>System Add-On Packages</label>
+                <div class="checkbox-group">
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="addon-merch" name="addon_merch" onchange="calculateTotal()">
+                        🎁 <strong>Add Ultimate Brand Merchandise Bundle (+$150 Flat)</strong><br>
+                        <span style="font-size:0.85rem; color:var(--text-muted); display:block; margin-top:4px;">Deploys automated inventory fulfillment for Backpack, Calendar, Desk Pad, Tumbler, and 2 side-by-side Shirts.</span>
+                    </label>
+                    
+                    <label class="checkbox-label" style="margin-top:10px;">
+                        <input type="checkbox" id="addon-setup" name="addon_setup" onchange="calculateTotal()">
+                        🛠️ <strong>Add 72-Hour Rapid Setup & Server Wire (+$350 Flat)</strong><br>
+                        <span style="font-size:0.85rem; color:var(--text-muted); display:block; margin-top:4px;">We handle all initial code routing, asset linking, and endpoint connectivity hands-free for you.</span>
+                    </label>
+                </div>
+            </div>
+
+            <div class="total-display">Total Financial Investment: <span id="totalPrice">$0</span></div>
+
+            <button type="submit">Complete Order & Initialize Factory Pipeline</button>
+        </form>
+    </div>
 </div>
 
 <script>
-    // Pure semantic architecture - ready for instant web submission
+    function calculateTotal() {
+        let total = 0;
+        const librarySelect = document.getElementById('library').value;
+        const merchChecked = document.getElementById('addon-merch').checked;
+        const setupChecked = document.getElementById('addon-setup').checked;
+
+        if (librarySelect !== 'none') total += 199;
+        if (merchChecked) total += 150;
+        if (setupChecked) total += 350;
+
+        document.getElementById('totalPrice').innerText = "$" + total;
+    }
 </script>
 </body>
 </html>
