@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AE9-Labs | Brand & Digital Systems</title>
+    <title>AE9-Labs | Automated Digital Architecture</title>
     <style>
         :root {
             --bg-space: #050212;
@@ -42,13 +42,12 @@
         }
 
         .container {
-            max-width: 1000px;
+            max-width: 1100px;
             width: 100%;
             position: relative;
             z-index: 10;
         }
 
-        /* Centering and structuring the layout core */
         header {
             display: flex;
             flex-direction: column;
@@ -58,10 +57,9 @@
             margin-bottom: 60px;
         }
 
-        /* Large, centered logo with dynamic cosmic floating animation */
         header img.brand-logo {
-            width: 180px;         /* Increased from 120px to make it prominent */
-            height: 180px;        /* Increased from 120px to make it prominent */
+            width: 180px;         
+            height: 180px;        
             border-radius: 50%;
             border: 3px solid var(--accent-green);
             box-shadow: 0 0 35px rgba(16, 185, 129, 0.5);
@@ -70,7 +68,6 @@
             animation: cosmicFloat 4s ease-in-out infinite;
         }
 
-        /* Hypnotic anti-gravity drift effect */
         @keyframes cosmicFloat {
             0% { transform: translateY(0px); }
             50% { transform: translateY(-10px); box-shadow: 0 15px 40px rgba(16, 185, 129, 0.6); }
@@ -91,13 +88,23 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
-        header p { color: var(--text-muted); font-size: 1.1rem; letter-spacing: 0.5px; max-width: 600px; }
+        header p { color: var(--text-muted); font-size: 1.1rem; letter-spacing: 0.5px; max-width: 700px; }
+
+        .section-title {
+            text-align: center;
+            font-size: 1.8rem;
+            margin-bottom: 30px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--text-light);
+            text-shadow: 0 0 10px rgba(6, 182, 212, 0.3);
+        }
 
         .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 25px;
-            margin-bottom: 50px;
+            margin-bottom: 60px;
         }
 
         .card {
@@ -111,21 +118,29 @@
             flex-direction: column;
             justify-content: space-between;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            transition: border-color 0.3s;
         }
 
-        .card h3 { margin-top: 0; font-size: 1.4rem; color: var(--text-light); }
-        .card:nth-child(1) .price { color: var(--accent-purple); }
-        .card:nth-child(2) .price { color: var(--accent-cyan); }
-        .card:nth-child(3) .price { color: var(--accent-green); }
-        .price { font-size: 2.4rem; font-weight: bold; margin: 15px 0; }
+        .card:hover {
+            border-color: var(--accent-cyan);
+        }
+
+        .card h3 { margin-top: 0; font-size: 1.5rem; color: var(--text-light); letter-spacing: 0.5px; }
+        
+        .card:nth-child(1) h3 { color: var(--accent-cyan); }
+        .card:nth-child(2) h3 { color: var(--accent-green); }
+        .card:nth-child(3) h3 { color: var(--accent-purple); }
+
+        .library-vibe {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            font-style: italic;
+            margin-bottom: 15px;
+        }
+
         .features { list-style: none; padding: 0; margin: 0 0 20px 0; color: var(--text-muted); }
         .features li { margin-bottom: 12px; font-size: 0.95rem; }
-
-        .addon-ui {
-            border-top: 1px solid var(--border);
-            padding-top: 15px;
-            margin-top: 15px;
-        }
+        .features strong { color: var(--text-light); }
 
         form {
             background: var(--card-bg);
@@ -134,10 +149,13 @@
             border: 1px solid var(--border);
             padding: 40px;
             border-radius: 16px;
+            max-width: 600px;
+            margin: 0 auto;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
         }
 
         .form-group { margin-bottom: 25px; }
-        label { display: block; margin-bottom: 8px; color: var(--text-muted); }
+        label { display: block; margin-bottom: 8px; color: var(--text-muted); font-size: 0.95rem; }
         
         input[type="text"], input[type="email"], select {
             width: 100%;
@@ -147,11 +165,34 @@
             color: white;
             border-radius: 8px;
             box-sizing: border-box;
+            font-size: 1rem;
+        }
+
+        input:focus, select:focus {
+            outline: none;
+            border-color: var(--accent-green);
+        }
+
+        .addon-container {
+            background: rgba(168, 85, 247, 0.05);
+            border: 1px dashed var(--border);
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            cursor: pointer;
+        }
+
+        .addon-container input {
+            accent-color: var(--accent-green);
+            transform: scale(1.2);
         }
 
         button {
             width: 100%;
-            padding: 16px;
+            padding: 18px;
             background: linear-gradient(90deg, var(--accent-purple), var(--accent-cyan), var(--accent-green));
             color: #050212;
             font-weight: 800;
@@ -161,7 +202,10 @@
             font-size: 1.1rem;
             text-transform: uppercase;
             letter-spacing: 1px;
+            box-shadow: 0 4px 15px rgba(168, 85, 247, 0.3);
         }
+
+        button:hover { filter: brightness(1.2); }
     </style>
 </head>
 <body>
@@ -172,95 +216,98 @@
     <header>
         <img src="logo.png" alt="AE9-Labs Official Logo" class="brand-logo" onerror="this.style.display='none';">
         <h1>AE9-<span>Labs</span></h1>
-        <p>Asynchronous Digital Architecture & Automated Physical Identity Systems</p>
+        <p>Automated Digital Architecture & Curated Identity Infrastructure</p>
     </header>
 
+    <div class="section-title">Explore The Structural Libraries</div>
+    
     <div class="grid">
+        <!-- Library 1: Trust & Enterprise -->
         <div class="card">
             <div>
-                <h3>Brand Asset Suite</h3>
-                <p style="font-size:0.85rem; color:var(--text-muted); margin-top:4px;">Physical Identity Kit</p>
-                <div class="price">$300</div>
+                <h3>1. Trust & Enterprise</h3>
+                <div class="library-vibe">Color Profile: Corporate Blue & Slate Cyan</div>
                 <ul class="features">
-                    <li>✓ 1 Custom Premium Laptop Backpack</li>
-                    <li>✓ 2 Premium Custom T-Shirts</li>
-                    <li>✓ 1 Premium Desktop Desk Pad</li>
-                    <li>✓ 1 Custom Spiral Journal</li>
-                    <li>✓ 1 Insulated Brand Tumbler</li>
-                    <li>✓ 1 Branded 12-Month Wall Calendar</li>
-                    <li>✓ 50 Custom Cut Vinyl Stickers</li>
+                    <li>⚡ <strong>Vibe:</strong> Sharp, geometric structural grids</li>
+                    <li>📦 <strong>Pages:</strong> Home, Services, Secure Contact</li>
+                    <li>🎯 <strong>Target:</strong> Tech Startups, SaaS, Consultants, Legal & Financial Professionals</li>
                 </ul>
             </div>
         </div>
 
+        <!-- Library 2: Earth & Wellness -->
         <div class="card">
             <div>
-                <h3>Basic 3-Page Website</h3>
-                <p style="font-size:0.85rem; color:var(--text-muted); margin-top:4px;">Async Digital Core</p>
-                <div class="price" id="basic-price">$900</div>
+                <h3>2. Earth & Wellness</h3>
+                <div class="library-vibe">Color Profile: Sage Green & Luxury Organic Cream</div>
                 <ul class="features">
-                    <li>✓ Home, Services, Contact Layouts</li>
-                    <li>✓ Fully Responsive UI Architecture</li>
-                    <li>✓ Clean Code delivered via GitHub</li>
+                    <li>⚡ <strong>Vibe:</strong> Airy whitespace, premium typography</li>
+                    <li>📦 <strong>Pages:</strong> Home, Showcase Catalog, About/Contact</li>
+                    <li>🎯 <strong>Target:</strong> Boutique Retail, Metaphysical Shops, Salons, High-End Wellness Brands</li>
                 </ul>
-            </div>
-            <div class="addon-ui">
-                <label style="display:flex; align-items:center; gap:10px; cursor:pointer;">
-                    <input type="checkbox" id="addon-basic" onchange="toggleAddon(150)"> 
-                    Add Brand Suite (+$150 Bundle Price)
-                </label>
             </div>
         </div>
 
+        <!-- Library 3: Obsidian Bold -->
         <div class="card">
             <div>
-                <h3>Growth Partner Tier</h3>
-                <p style="font-size:0.85rem; color:var(--text-muted); margin-top:4px;">Complete Operations Scaler</p>
-                <div class="price">$1,850</div>
+                <h3>3. Obsidian Bold</h3>
+                <div class="library-vibe">Color Profile: Pure Dark Mode & High-Contrast Neon</div>
                 <ul class="features">
-                    <li>✓ Basic 3-Page Web Platform Build</li>
-                    <li>✓ Leads-to-Text CRM System Backend</li>
-                    <li>✓ 6 Months Core Architecture Support</li>
-                    <li>🎁 Includes FULL Brand Asset Suite</li>
-                    <li>* Flat Rate Unified Agreement</li>
+                    <li>⚡ <strong>Vibe:</strong> Dark canvas layouts, rich glowing elements</li>
+                    <li>📦 <strong>Pages:</strong> Home, Portfolio, Booking Pipeline</li>
+                    <li>🎯 <strong>Target:</strong> Digital Creators, Developers, Apparel Lines, Modern Agencies</li>
                 </ul>
             </div>
         </div>
     </div>
 
+    <!-- Unified Order Form targeting Basin Endpoints -->
     <form action="https://usebasin.com/f/YOUR_BASIN_ENDPOINT_ID" method="POST">
-        <h2 style="margin-top:0; margin-bottom:25px;">Initialize Your Pipeline</h2>
+        <h2 style="margin-top:0; margin-bottom:25px; text-align:center;">Secure Instant Access</h2>
         
         <div class="form-group">
-            <label for="name">Full Name or Business Name</label>
-            <input type="text" id="name" name="name" required placeholder="Acme Logistics Co.">
+            <label for="name">Your Name / Business Identity</label>
+            <input type="text" id="name" name="name" required placeholder="Jane Doe">
         </div>
 
         <div class="form-group">
-            <label for="email">Work Email Address</label>
-            <input type="email" id="email" name="email" required placeholder="contact@acme.com">
+            <label for="email">Delivery Email Address (For digital assets)</label>
+            <input type="email" id="email" name="email" required placeholder="jane@example.com">
         </div>
 
         <div class="form-group">
-            <label for="package">Select Target Configuration</label>
-            <select id="package" name="package" required>
-                <option value="suite-merch">Brand Asset Suite Only ($300)</option>
-                <option value="basic-3page">Basic 3-Page Website ($900)</option>
-                <option value="basic-3page-merch">Basic 3-Page Website + Brand Suite ($1,050)</option>
-                <option value="growth-partner-flat">Growth Partner Tier [All-In Flat Agreement] ($1,850)</option>
+            <label for="library">1. Choose Your Library Asset Path</label>
+            <select id="library" name="library" required>
+                <option value="trust-enterprise">The Trust & Enterprise Library (Blue/Tech)</option>
+                <option value="earth-wellness">The Earth & Wellness Library (Sage/Organic)</option>
+                <option value="obsidian-bold">The Obsidian Bold Library (Dark Mode/Neon)</option>
             </select>
         </div>
 
-        <button type="submit">Initialize Automated Onboarding</button>
+        <div class="form-group">
+            <label for="tier">2. Select Implementation Tier</label>
+            <select id="tier" name="tier" required>
+                <option value="code-only">Digital Asset Box: Code Only ($150)</option>
+                <option value="ultimate-brand-box">Ultimate Brand Box: Code + Printify Physical Merch Kit ($450)</option>
+            </select>
+        </div>
+
+        <!-- The 72-Hour Rapid Setup Automation Revenue Play -->
+        <label class="addon-container" for="rapid-setup">
+            <input type="checkbox" id="rapid-setup" name="rapid_setup_addon" value="Yes">
+            <div>
+                <strong style="display:block; color:white; font-size:0.95rem;">Add 72-Hour Rapid Code Deployment (+$250)</strong>
+                <span style="display:block; color:var(--text-muted); font-size:0.85rem; margin-top:2px;">Skip the setup. We will deploy the files straight to your GitHub Pages domain for you.</span>
+            </div>
+        </label>
+
+        <button type="submit">Deploy My Brand Architecture</button>
     </form>
 </div>
 
 <script>
-    function toggleAddon(addonCost) {
-        const basePrice = 900;
-        const isChecked = document.getElementById('addon-basic').checked;
-        document.getElementById('basic-price').innerText = "$" + (isChecked ? (basePrice + addonCost) : basePrice);
-    }
+    // Pure semantic architecture - ready for instant web submission
 </script>
 </body>
 </html>
