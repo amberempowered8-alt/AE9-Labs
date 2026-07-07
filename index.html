@@ -246,9 +246,9 @@
 
 <div class="container">
     <header>
-        <img src="logo.png" alt="AE9-Labs Official Logo" class="brand-logo" onerror="this.style.display='none';">
+        <img src="logo.png" alt="Official Logo" class="brand-logo" onerror="this.style.display='none';">
         <h1>AE9-<span>Labs</span></h1>
-        <p>Asynchronous Digital Factory & Hands-Free Brand Blueprint Architecture</p>
+        <p>Deployment-ready system architecture layers and fully automated identity pipelines for modern storefront operators.</p>
     </header>
 
     <div class="section-title">Structural Design Libraries</div>
@@ -289,6 +289,7 @@
         </div>
     </div>
 
+    <!-- The Physical Production Showroom Layer -->
     <div class="merch-showroom">
         <div class="showroom-layout">
             <div>
@@ -297,14 +298,14 @@
             <div class="merch-manifest">
                 <h3>🚀 The Ultimate Brand Merchandise Bundle</h3>
                 <p style="color: var(--text-muted); line-height: 1.6; margin-bottom: 15px;">
-                    Upgrade any architectural library template package during checkout to instantly map your brand assets onto our curated premium workspace inventory sequence.
+                    Upgrade any architectural library template package during checkout to instantly map your assets onto our premium workspace inventory fulfillment line.
                 </p>
                 <ul>
-                    <li>🎒 1 Premium Custom Laptop Backpack</li>
+                    <li>🎒 1 Premium Custom Backpack</li>
                     <li>🗓️ 1 Standard Wall-Hanging Calendar</li>
                     <li>📓 1 Hardcover Spiral Brand Journal</li>
-                    <li>👕 2 Premium Curated Brand T-Shirts (Side-by-Side Setup)</li>
-                    <li>🥤 1 Insulated Black Stainless Travel Tumbler</li>
+                    <li>👕 2 Premium Curated Brand T-Shirts</li>
+                    <li>🥤 1 Insulated Stainless Steel Travel Tumbler</li>
                     <li>🎴 1 Micro-Weave Desktop Computer Desk Pad</li>
                     <li>🏷️ 50 Custom-Cut Matte Vinyl Logo Stickers</li>
                 </ul>
@@ -313,6 +314,7 @@
         </div>
     </div>
 
+    <!-- Unified Secure Access Checkout Mapped to Basin -->
     <div class="checkout-box">
         <h2 style="margin-top:0; margin-bottom:25px;">Secure Instant Access</h2>
         
@@ -336,15 +338,28 @@
                 <label>System Add-On Packages</label>
                 <div class="checkbox-group">
                     <label class="checkbox-label">
-                        <input type="checkbox" id="addon-merch" name="addon_merch" onchange="calculateTotal()">
+                        <input type="checkbox" id="addon-merch" name="addon_merch" onchange="toggleTumblerColor(); calculateTotal()">
                         🎁 <strong>Add Ultimate Brand Merchandise Bundle (+$150 Flat)</strong><br>
-                        <span style="font-size:0.85rem; color:var(--text-muted); display:block; margin-top:4px;">Deploys automated inventory fulfillment for Backpack, Wall Calendar, Journal, Desk Pad, Tumbler, 2 side-by-side Shirts, and 50 Stickers.</span>
+                        <span style="font-size:0.85rem; color:var(--text-muted); display:block; margin-top:4px;">Deploys automated inventory fulfillment for Backpack, Wall Calendar, Journal, Desk Pad, Tumbler, 2 Shirts, and 50 Stickers.</span>
                     </label>
                     
+                    <!-- Dynamic Tumbler Color Selection Selector -->
+                    <div id="tumbler-color-wrapper" style="display: none; margin-top: 12px; width: 100%; padding-left: 30px; box-sizing: border-box;">
+                        <label for="tumbler_color" style="font-size: 0.85rem; color: var(--accent-cyan);">Select Insulated Tumbler Color Preference:</label>
+                        <select id="tumbler_color" name="tumbler_color" style="padding: 10px; font-size: 0.9rem; background: rgba(5,2,18,0.95);">
+                            <option value="matte_black">Matte Black Steel</option>
+                            <option value="cosmic_purple">Cosmic Deep Violet</option>
+                            <option value="matrix_green">Matrix Circuit Green</option>
+                            <option value="pure_white">Classic Premium White</option>
+                        </select>
+                    </div>
+
                     <label class="checkbox-label" style="margin-top:10px;">
                         <input type="checkbox" id="addon-setup" name="addon_setup" onchange="calculateTotal()">
                         🛠️ <strong>Add 72-Hour Rapid Setup & Server Wire (+$350 Flat)</strong><br>
-                        <span style="font-size:0.85rem; color:var(--text-muted); display:block; margin-top:4px;">We handle all initial code routing, asset linking, and endpoint connectivity hands-free for you.</span>
+                        <span style="font-size:0.85rem; color:var(--text-muted); display:block; margin-top:4px;">
+                            <strong>New to building websites? Select this option.</strong> We will log in behind the scenes to handle all technical file configuration, connect your forms to your server dashboard, hook up your custom print blueprints, and push your platform live so it is 100% operational within 72 hours—no coding or tech skills required on your end.
+                        </span>
                     </label>
                 </div>
             </div>
@@ -357,6 +372,12 @@
 </div>
 
 <script>
+    function toggleTumblerColor() {
+        const merchChecked = document.getElementById('addon-merch').checked;
+        const colorWrapper = document.getElementById('tumbler-color-wrapper');
+        colorWrapper.style.display = merchChecked ? 'block' : 'none';
+    }
+
     function calculateTotal() {
         let total = 0;
         const librarySelect = document.getElementById('library').value;
