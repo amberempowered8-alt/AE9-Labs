@@ -186,6 +186,7 @@
             padding: 40px;
             border-radius: 16px;
             box-sizing: border-box;
+            margin-bottom: 40px;
         }
 
         .form-group { margin-bottom: 25px; }
@@ -230,7 +231,7 @@
 
         /* Inner Dynamic Menu Option Containers */
         .inner-options-panel {
-            display: flex;
+            display: none; /* Controlled via JS when bundle is checked */
             flex-direction: column;
             gap: 15px;
             width: 100%;
@@ -268,7 +269,10 @@
             font-size: 1.1rem;
             text-transform: uppercase;
             letter-spacing: 1px;
+            transition: opacity 0.2s ease;
         }
+
+        button:hover { opacity: 0.9; }
     </style>
 </head>
 <body>
@@ -341,122 +345,95 @@
                     <li>🏷️ 50 Custom-Cut Matte Vinyl Logo Stickers</li>
                 </ul>
                 <div class="fulfillment-notice">
-                    % <strong>Fulfillment Transparency Note:</strong> We use real-production photography corresponding directly to the underlying physical inventory SKUs configured within our system architecture. You will receive the exact premium build models shown. In the rare event a regional printing center experiences a temporary manufacturer stock outage on a specific accessory, a premium alternative build will be automatically substituted to avoid pipeline delays, and a dynamic shipping notice update will be routed straight to your email dashboard.
+                    📦 <strong>Fulfillment Transparency Note:</strong> Physical items are manufactured asynchronously via automated on-demand production pipelines. Mockups map automatically from vector graphics in your architecture configuration.
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Unified Secure Access Checkout Mapped to Basin -->
+    <!-- Unified Checkout UI Box -->
     <div class="checkout-box">
-        <h2 style="margin-top:0; margin-bottom:25px;">Secure Instant Access</h2>
-        
-        <form action="https://usebasin.com/f/YOUR_BASIN_ENDPOINT_ID" method="POST" id="purchaseForm">
+        <form id="checkoutForm">
             <div class="form-group">
-                <label for="email">Your Best Work Email (Where delivery data packets are routed)</label>
-                <input type="email" id="email" name="email" required placeholder="name@company.com">
+                <label for="clientEmail">Operator Email Address</label>
+                <input type="email" id="clientEmail" required placeholder="name@yourdomain.com">
             </div>
 
             <div class="form-group">
-                <label for="library">Target Base Architectural Library</label>
-                <select id="library" name="library" required onchange="calculateTotal()">
-                    <option value="none">-- Select an Industry Layer --</option>
-                    <option value="trust">Corporate & Tech Systems Blueprint ($199)</option>
-                    <option value="wellness">Lifestyle & Wellness Blueprint ($199)</option>
-                    <option value="obsidian">Creatives & Modern Media Blueprint ($199)</option>
+                <label for="baseLayer">Select System Architecture Base Layer</label>
+                <select id="baseLayer">
+                    <option value="corporate" data-price="299">Corporate & Tech Systems Base — $299</option>
+                    <option value="lifestyle" data-price="249">Lifestyle & Wellness Base — $249</option>
+                    <option value="creatives" data-price="199">Creatives & Modern Media Base — $199</option>
                 </select>
             </div>
 
             <div class="form-group">
-                <label>System Add-On Packages</label>
+                <label>Optional Infrastructure Extensions</label>
                 <div class="checkbox-group">
-                    
-                    <!-- Merchandise Bundle Checkbox Option -->
                     <label class="checkbox-label">
-                        <input type="checkbox" id="addon-merch" name="addon_merch" onchange="toggleMerchOptions(); calculateTotal()">
-                        🎁 <strong>Add Ultimate Brand Merchandise Bundle (+$150 Flat)</strong><br>
-                        <span style="font-size:0.85rem; color:var(--text-muted); display:block; margin-top:4px;">Deploys automated inventory fulfillment for Backpack, Wall Calendar, Journal, Desk Pad, Tumbler, 2 Shirts, and 50 Stickers.</span>
+                        <input type="checkbox" id="includeBundle" data-price="150">
+                        <span><strong>Add Ultimate Brand Merchandise Bundle (+$150)</strong><br><small style="color: var(--text-muted);">Syncs vector configurations directly to production systems.</small></span>
                     </label>
-                    
-                    <!-- Dynamic Merchandise Style Menus (Properly Contained & Hidden by Default) -->
-                    <div id="merch-options-wrapper" class="inner-options-panel" style="display: none;">
-                        
-                        <!-- T-Shirt Base Color Profile Selection -->
-                        <div>
-                            <label for="shirt_color">Select T-Shirt Base Color Profile:</label>
-                            <select id="shirt_color" name="shirt_color">
-                                <option value="purple">Cosmic Purple</option>
-                                <option value="black">Matte Black</option>
-                                <option value="white">Premium White</option>
-                                <option value="grey">Athletic Grey</option>
-                                <option value="pink">Soft Pink</option>
-                                <option value="green">Matrix Green</option>
-                                <option value="red">Crimson Red</option>
-                                <option value="blue">Royal Blue</option>
-                            </select>
-                        </div>
 
-                        <!-- T-Shirt Size Variant Selection -->
+                    <!-- Inner options panel shown only if bundle is enabled -->
+                    <div class="inner-options-panel" id="bundleOptions">
                         <div>
-                            <label for="shirt_size">Select T-Shirt Size:</label>
-                            <select id="shirt_size" name="shirt_size">
-                                <option value="S">Small</option>
-                                <option value="M">Medium</option>
-                                <option value="L">Large</option>
-                                <option value="XL">X-Large</option>
-                                <option value="2XL">2X-Large</option>
-                            </select>
-                        </div>
-
-                        <!-- Insulated Tumbler Color Preference Selection -->
-                        <div>
-                            <label for="tumbler_color">Select Insulated Tumbler Color Preference:</label>
-                            <select id="tumbler_color" name="tumbler_color">
-                                <option value="matte_black">Matte Black Steel</option>
-                                <option value="cosmic_purple">Cosmic Deep Violet</option>
-                                <option value="matrix_green">Matrix Circuit Green</option>
-                                <option value="pure_white">Classic Premium White</option>
+                            <label for="shirtSize">Curated T-Shirt Sizing Profile</label>
+                            <select id="shirtSize">
+                                <option value="S">Small (S)</option>
+                                <option value="M" selected>Medium (M)</option>
+                                <option value="L">Large (L)</option>
+                                <option value="XL">X-Large (XL)</option>
                             </select>
                         </div>
                     </div>
-
-                    <!-- Setup & Server Deployment Checkbox Option -->
-                    <label class="checkbox-label" style="margin-top:10px;">
-                        <input type="checkbox" id="addon-setup" name="addon_setup" onchange="calculateTotal()">
-                        🛠️ <strong>Add 72-Hour Rapid Setup & Server Wire (+$350 Flat)</strong><br>
-                        <span style="font-size:0.85rem; color:var(--text-muted); display:block; margin-top:4px;">
-                            <strong>New to building websites? Select this option.</strong> We will log in behind the scenes to handle all technical file configuration, connect your forms to your server dashboard, hook up your custom print blueprints, and push your platform live so it is 100% operational within 72 hours—no coding or tech skills required on your end.
-                        </span>
-                    </label>
                 </div>
             </div>
 
-            <div class="total-display">Total Financial Investment: <span id="totalPrice">$0</span></div>
+            <div class="total-display">
+                Total Deployment Ledger: <span>$299</span>
+            </div>
 
-            <button type="submit">Complete Order & Initialize Factory Pipeline</button>
+            <button type="submit">Initialize Automation Pipeline</button>
         </form>
     </div>
 </div>
 
 <script>
-    function toggleMerchOptions() {
-        const merchChecked = document.getElementById('addon-merch').checked;
-        const optionsWrapper = document.getElementById('merch-options-wrapper');
-        optionsWrapper.style.display = merchChecked ? 'flex' : 'none';
-    }
+    document.addEventListener('DOMContentLoaded', () => {
+        const baseLayerSelect = document.getElementById('baseLayer');
+        const includeBundleCheckbox = document.getElementById('includeBundle');
+        const bundleOptionsPanel = document.getElementById('bundleOptions');
+        const totalDisplaySpan = document.querySelector('.total-display span');
+        const checkoutForm = document.getElementById('checkoutForm');
 
-    function calculateTotal() {
-        let total = 0;
-        const librarySelect = document.getElementById('library').value;
-        const merchChecked = document.getElementById('addon-merch').checked;
-        const setupChecked = document.getElementById('addon-setup').checked;
+        function updateLedgerTotal() {
+            const chosenBaseOption = baseLayerSelect.options[baseLayerSelect.selectedIndex];
+            let total = parseInt(chosenBaseOption.getAttribute('data-price')) || 0;
 
-        if (librarySelect !== 'none') total += 199;
-        if (merchChecked) total += 150;
-        if (setupChecked) total += 350;
+            if (includeBundleCheckbox.checked) {
+                total += parseInt(includeBundleCheckbox.getAttribute('data-price')) || 0;
+                bundleOptionsPanel.style.display = 'flex';
+            } else {
+                bundleOptionsPanel.style.display = 'none';
+            }
 
-        document.getElementById('totalPrice').innerText = "$" + total;
-    }
+            totalDisplaySpan.textContent = `$${total}`;
+        }
+
+        baseLayerSelect.addEventListener('change', updateLedgerTotal);
+        includeBundleCheckbox.addEventListener('change', updateLedgerTotal);
+
+        checkoutForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('Initialization vector confirmed. Automation engine building environment blocks...');
+        });
+
+        // Run initial configuration load
+        updateLedgerTotal();
+    });
 </script>
+
 </body>
 </html>
