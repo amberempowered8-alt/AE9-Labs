@@ -54,7 +54,7 @@
             align-items: center;
             justify-content: center;
             text-align: center;
-            margin-bottom: 50px;
+            margin-bottom: 30px;
         }
 
         header img.brand-logo {
@@ -88,25 +88,47 @@
         }
         header p { color: var(--text-muted); font-size: 1.1rem; max-width: 700px; line-height: 1.6; }
 
-        .section-title {
+        /* Global Brand Upgrade Banner */
+        .upgrade-banner {
+            background: rgba(168, 85, 247, 0.1);
+            border: 1px solid rgba(168, 85, 247, 0.4);
+            border-radius: 12px;
+            padding: 20px;
             text-align: center;
-            font-size: 2rem;
-            margin-bottom: 10px;
-            letter-spacing: 1px;
-            text-shadow: 0 0 15px rgba(6, 182, 212, 0.2);
-        }
-        .section-subtitle {
-            text-align: center;
-            color: var(--text-muted);
             margin-bottom: 40px;
-            font-size: 1rem;
+            box-shadow: 0 0 20px rgba(168, 85, 247, 0.15);
+        }
+
+        .upgrade-banner h4 {
+            margin: 0 0 8px 0;
+            color: var(--text-light);
+            font-size: 1.2rem;
+            letter-spacing: 1px;
+        }
+
+        .upgrade-banner h4 span {
+            color: var(--accent-purple);
+            text-shadow: 0 0 10px rgba(168, 85, 247, 0.5);
+        }
+
+        .upgrade-banner p {
+            margin: 0;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            line-height: 1.4;
         }
 
         .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
-            gap: 30px;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 25px;
             margin-bottom: 60px;
+        }
+
+        @media (min-width: 900px) {
+            .grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
         }
 
         .card {
@@ -115,7 +137,7 @@
             -webkit-backdrop-filter: blur(20px);
             border: 1px solid var(--border);
             border-radius: 16px;
-            padding: 35px;
+            padding: 25px;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
@@ -127,38 +149,39 @@
             transform: translateY(-5px);
         }
 
-        .card h3 { margin-top: 0; font-size: 1.8rem; color: var(--text-light); }
-        .price-tag { font-size: 2rem; font-weight: bold; color: var(--accent-green); margin: 15px 0; }
-        .color-profile { font-size: 0.95rem; color: var(--accent-cyan); font-weight: 600; margin-bottom: 20px; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 10px; }
+        .card h3 { margin-top: 0; font-size: 1.4rem; color: var(--text-light); min-height: 60px; display: flex; align-items: center; }
+        .price-tag { font-size: 2.2rem; font-weight: bold; color: var(--accent-green); margin: 10px 0; }
+        .color-profile { font-size: 0.85rem; color: var(--accent-cyan); font-weight: 600; margin-bottom: 15px; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 8px; min-height: 40px; }
         
-        .card-detail { margin-bottom: 14px; font-size: 0.95rem; line-height: 1.5; color: var(--text-muted); }
+        .card-detail { margin-bottom: 10px; font-size: 0.85rem; line-height: 1.4; color: var(--text-muted); }
         .card-detail strong { color: var(--text-light); }
 
-        .card.diy { border-color: rgba(168, 85, 247, 0.4); box-shadow: 0 10px 30px rgba(168, 85, 247, 0.05); }
-        .card.express { border-color: rgba(6, 182, 212, 0.4); box-shadow: 0 10px 30px rgba(6, 182, 212, 0.1); }
-        .card.elite { border-color: rgba(168, 85, 247, 0.4); box-shadow: 0 10px 30px rgba(168, 85, 247, 0.1); }
+        .card.diy { border-color: rgba(168, 85, 247, 0.3); }
+        .card.fullstack { border-color: rgba(6, 182, 212, 0.4); box-shadow: 0 10px 30px rgba(6, 182, 212, 0.05); }
+        .card.dfy { border-color: var(--accent-green); box-shadow: 0 10px 30px rgba(16, 185, 129, 0.1); }
 
         .btn-action {
             display: block;
             text-align: center;
             text-decoration: none;
-            padding: 14px;
+            padding: 12px;
             color: #050212;
             font-weight: bold;
             border-radius: 8px;
             text-transform: uppercase;
-            font-size: 0.95rem;
+            font-size: 0.85rem;
             letter-spacing: 1px;
             transition: opacity 0.2s ease;
-            margin-top: 25px;
+            margin-top: 20px;
         }
 
         .btn-action:hover {
             opacity: 0.9;
         }
 
-        .btn-green { background: linear-gradient(90deg, var(--accent-green), var(--accent-cyan)); }
         .btn-purple { background: linear-gradient(90deg, var(--accent-purple), var(--accent-cyan)); }
+        .btn-cyan { background: linear-gradient(90deg, var(--accent-cyan), var(--accent-green)); }
+        .btn-green { background: linear-gradient(90deg, var(--accent-green), var(--accent-purple)); }
 
         .footer-note {
             text-align: center;
@@ -182,6 +205,12 @@
         <p>Turnkey system deployments, clean codebase utilities, and low-cost automation frameworks built for modern digital operators.</p>
     </header>
 
+    <!-- Upgrade Add-on Promotion Banner -->
+    <div class="upgrade-banner">
+        <h4>✨ Customize Any Order: Add the <span>AE9Labs Brand Kit Setup</span></h4>
+        <p>Need a beautiful, unified corporate visual identity? You can easily append our professional custom Brand Design workshop (colors, styling guides, and core typography) as a 1-click upgrade at checkout on any package.</p>
+    </div>
+
     <div class="section-title">Production Tiers & Simple Systems</div>
     <div class="section-subtitle">Select your system below to instantly initialize deployment pipelines</div>
 
@@ -193,12 +222,11 @@
                 <div class="price-tag">$15</div>
                 <div class="color-profile">Lean Business Blueprint & AI Prompt Stack</div>
                 <div class="card-detail">⚡ <strong>Speed:</strong> Instant Download. Get fully operational today.</div>
-                <div class="card-detail">📦 <strong>What You Get:</strong> The 6-tool system blueprint + copy-and-paste Claude and ChatGPT content matching prompt scripts.</div>
-                <div class="card-detail">⚙️ <strong>Operations:</strong> Learn how to run a quiet, high-margin brand for under $50/month.</div>
+                <div class="card-detail">📦 <strong>What:</strong> The 6-tool system blueprint + copy-and-paste Claude content matching prompt scripts.</div>
+                <div class="card-detail">⚙️ <strong>Ops:</strong> Learn how to run a quiet, high-margin brand for under $50/month.</div>
                 <div class="card-detail">🎯 <strong>Niche:</strong> Perfect for introverted creators, solo operators, and digital builders.</div>
             </div>
-            <!-- PASTE YOUR $15 PAYHIP LINK BELOW -->
-            <a href="https://payhip.com/b/Zf4Bz" target="_blank" class="btn-action btn-purple">
+            <a href="PASTE_YOUR_15_DOLLAR_BUNDLE_PAYHIP_LINK_HERE" target="_blank" class="btn-action btn-purple">
                 Instant Download
             </a>
         </div>
@@ -210,50 +238,44 @@
                 <div class="price-tag">$49</div>
                 <div class="color-profile">Self-Hosted Code Package</div>
                 <div class="card-detail">⚡ <strong>Speed:</strong> Instant Download. Build your site in under 15 minutes.</div>
-                <div class="card-detail">📦 <strong>What You Get:</strong> Complete pre-built code bundle (HTML/CSS/JS) + interactive setup guides.</div>
+                <div class="card-detail">📦 <strong>What:</strong> Complete pre-built code bundle (HTML/CSS/JS) + interactive setup guides.</div>
                 <div class="card-detail">🔌 <strong>Airtable Ready:</strong> Connect your personal database easily using our master spreadsheet blueprint.</div>
                 <div class="card-detail">🔒 <strong>Ownership:</strong> Zero recurring subscription fees. You own 100% of your code and data.</div>
             </div>
-            <!-- PASTE YOUR $49 PAYHIP LINK BELOW -->
-            <a href="https://payhip.com/b/p7zMX" target="_blank" class="btn-action btn-purple">
+            <a href="PASTE_YOUR_49_DOLLAR_STOREFRONT_PAYHIP_LINK_HERE" target="_blank" class="btn-action btn-purple">
                 Instant Download
             </a>
         </div>
 
-        <!-- Package 3: Express DFY Site -->
-        <div class="card express">
+        <!-- Package 3: The Full-Stack Storefront & Marketing Engine -->
+        <div class="card fullstack">
             <div>
-                <h3>🚀 The Express DFY System</h3>
-                <div class="price-tag">$499</div>
-                <div class="color-profile">Turnkey Platform Deployment</div>
-                <div class="card-detail">⚡ <strong>Speed:</strong> Guaranteed 1-Week base deployment upon receipt of files.</div>
-                <div class="card-detail">📦 <strong>What We Do:</strong> We take your content and plug it directly into our code and database architectures.</div>
-                <div class="card-detail">🎨 <strong>Visual Choice:</strong> Fully custom tailored to your colors, layout choices, and precise design concepts.</div>
-                <div class="card-detail">🛠️ <strong>Terms:</strong> Strict 72-hour review turnaround window with up to 3 revision sets included.</div>
-                <div class="card-detail">🛡️ <strong>Included Support:</strong> Free 3-month system optimization & background maintenance protection plan.</div>
+                <h3>⚡ Full-Stack Storefront & Engine</h3>
+                <div class="price-tag">$99</div>
+                <div class="color-profile">Advanced Self-Hosted Marketing Stack</div>
+                <div class="card-detail">⚡ <strong>Speed:</strong> Instant Download. Complete commercial system.</div>
+                <div class="card-detail">📦 <strong>Marketing:</strong> Step-by-step setup guides for Klaviyo newsletter tracking and automated email flows.</div>
+                <div class="card-detail">💳 <strong>Checkout:</strong> Learn how to plug in secure Stripe, PayPal, and Payhip customer checkout.</div>
+                <div class="card-detail">💬 <strong>Support:</strong> Install a live web chat helper widget without paying platform fees.</div>
             </div>
-            <!-- PASTE YOUR $499 PAYHIP LINK BELOW -->
-            <a href="PASTE_YOUR_499_DOLLAR_EXPRESS_PAYHIP_LINK_HERE" target="_blank" class="btn-action btn-green">
-                Order Custom Setup
+            <a href="PASTE_YOUR_99_DOLLAR_FULLSTACK_PAYHIP_LINK_HERE" target="_blank" class="btn-action btn-cyan">
+                Instant Download
             </a>
         </div>
 
-        <!-- Package 4: Elite DFY Site + Brand Kit -->
-        <div class="card elite">
+        <!-- Package 4: Custom Deployments (Combined DFY) -->
+        <div class="card dfy">
             <div>
-                <h3>💎 The Elite DFY + Brand Kit</h3>
-                <div class="price-tag">$749</div>
-                <div class="color-profile">Complete Identity & Core Engine Setup</div>
-                <div class="card-detail">⚡ <strong>Speed:</strong> 1-Week delivery clock runs immediately upon finalized brand sign-off.</div>
-                <div class="card-detail">✨ <strong>Brand Foundations:</strong> We establish a beautiful, unified identity layout (colors, typography rules, style guidelines).</div>
-                <div class="card-detail">🛡️ <strong>Asset Requirement:</strong> You provide your primary logo files; we engineer the cohesive web brand framework.</div>
-                <div class="card-detail">📦 <strong>Everything Else:</strong> Includes the full structural template implementation from the Express tier.</div>
-                <div class="card-detail">🛠️ <strong>Review Limits:</strong> Secure 3-revision package policy applied within your 72-hour feedback loop.</div>
-                <div class="card-detail">🛡️ <strong>Included Support:</strong> Free 3-month system optimization & background maintenance protection plan.</div>
+                <h3>🚀 Custom DFY Build Services</h3>
+                <div class="price-tag">$499+</div>
+                <div class="color-profile">Turnkey Done-For-You Production Tiers</div>
+                <div class="card-detail">⚡ <strong>Speed:</strong> Guaranteed 1-Week base deployment upon receipt of files.</div>
+                <div class="card-detail">📦 <strong>What We Do:</strong> We take your content and deploy it directly onto fast, free-tier hosting.</div>
+                <div class="card-detail">🎨 <strong>Identity:</strong> Optional full visual branding setup, custom typography, and logo guidance (Elite Tier Upgrade).</div>
+                <div class="card-detail">🛡️ <strong>Support:</strong> Includes a free 3-month system optimization & maintenance plan.</div>
             </div>
-            <!-- PASTE YOUR $749 PAYHIP LINK BELOW -->
-            <a href="PASTE_YOUR_749_DOLLAR_ELITE_PAYHIP_LINK_HERE" target="_blank" class="btn-action btn-green">
-                Order Custom Setup
+            <a href="PASTE_YOUR_PAYHIP_STORE_URL_HERE" target="_blank" class="btn-action btn-green">
+                View Custom Tiers
             </a>
         </div>
     </div>
